@@ -1,0 +1,5 @@
+ISOGRAMA
+
+Hacer un pograma en PHP que compruebe si la palabra introducida es un isograma
+
+Hacer un formulario que guarde los datos introducidos y diga si es un isograma o no
