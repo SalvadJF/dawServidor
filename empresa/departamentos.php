@@ -6,7 +6,7 @@
     <title>Departamentos</title>
 </head>
 <body>
-    <?php
+    <?php require "auxiliar.php";
 
         function mostrar_tabla(PDOStatement $sent) {
             ?>
@@ -28,10 +28,13 @@
                 <?php endforeach;?>
             </tbody>
         </table>
+
+
+        <a href="insertar.php">Insertar un nuevo departamento</a>
     <?php
         }
 
-        $pdo = new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'salvadorjimenez1993');
+        $pdo = conectar();
         $codigo = isset($_GET['codigo']) ? trim($_GET['codigo']) : null;
 
     ?>
