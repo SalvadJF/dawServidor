@@ -7,12 +7,13 @@
 </head>
 <body>
     <?php
-    $id isset($_GET['id'])? trim($_GET['id']) : null;
+    $id = isset($_GET['id']) ? trim($_GET['id']) : null;
 
     if (!isset($id)) {
-
+        header('Location: departamentos.php');
+        return;
     }
-
-
+    ?>
+    <?= $id ?>
 </body>
 </html>
