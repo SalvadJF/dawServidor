@@ -1,0 +1,19 @@
+Crea en PHP - SQL
+
+La tabla empleados
+
+campos
+
+ID
+
+Numero
+
+Nombre
+
+apellidos
+
+fecha_alta
+
+salario
+
+departamento_id

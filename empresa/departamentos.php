@@ -24,6 +24,7 @@
                         <td><?= $fila['denominacion'] ?></td>
                         <td><?= $fila['localidad'] ?></td>
                         <td><a href="borrar.php?id=<?= $fila['id'] ?>">Borrar</a></td>
+                        <td><a href="modificar.php?id=<?= $fila['id'] ?>">Modificar</a></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

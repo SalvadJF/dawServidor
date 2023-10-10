@@ -10,7 +10,7 @@
     require 'auxiliar.php';
 
     if (isset($_POST['id'])) {
-        $id = trim(isset($_POST['id']));
+        $id = trim(($_POST['id']));
         if (!ctype_digit($id)) {
             return volver_departamentos();
         }
