@@ -6,7 +6,7 @@
     <title>Departamentos</title>
 </head>
 <body>
-    <?php require "auxiliar.php";
+    <?php require "../auxiliar.php";
 
         function mostrar_tabla(PDOStatement $sent) {
             ?>

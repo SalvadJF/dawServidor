@@ -7,10 +7,11 @@
 </head>
 <body>
     <?php
-    require 'auxiliar.php';
+    require '../auxiliar.php';
 
     if (isset($_POST['id'])) {
         $id = trim(($_POST['id']));
+        $errores = [];
         if (!ctype_digit($id)) {
             return volver_departamentos();
         }
@@ -25,8 +26,23 @@
             return volver_departamentos();
         }
 
+        $sent = $pdo->prepare('SELECT COUNT(e.*) FROM departamentos d JOIN empleados e ON (e.departamento_id = d.id) WHERE d.id = :id GROUP BY d.id ');
+        $sent->execute([':id' => $id]);
+
+        if ($sent->fetchColumn() > 0) {
+            $errores[] = "No se puede borrar un departamento con trabajadores";
+        }
+         if (!empty($errores)): ?>
+            <ul>
+            <?php foreach ($errores as $error): ?>
+                <li><?= $error ?></li>
+            <?php endforeach ?>
+            </ul>
+        <?php
+        else:
         $sent = $pdo->prepare('DELETE FROM departamentos WHERE id = :id');
         $sent->execute([':id' => $id]);
+        endif;
 
         $pdo->commit();
 
@@ -35,15 +51,14 @@
     $id = isset($_GET['id']) ? trim($_GET['id']) : null;
 
     if (!isset($id)) {
-        header('Location: departamentos.php');
-        return;
+        return volver_departamentos();
     }
     ?>
     <p>¿Está seguro de que quiere borrar ese departamento?</p>
     <form action="" method="post">
         <input type="hidden" name="id" value="<?= $id ?>">
         <button type="submit">Sí</button>
-        <a href="departamentos.php">Volver</a>
+        <a href="index.php">Volver</a>
     </form>
 </body>
 </html>

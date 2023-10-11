@@ -16,9 +16,25 @@ function buscar_departamento_por_id($id, ?PDO $pdo = null)
     return $sent->fetch();
 }
 
+function buscar_empleado_por_id($id, ?PDO $pdo = null)
+{
+    if ($pdo === null) {
+        $pdo = conectar();
+    }
+
+    $sent = $pdo->prepare('SELECT * FROM empleados WHERE id = :id');
+    $sent->execute([':id' => $id]);
+    return $sent->fetch();
+}
+
 function volver_departamentos()
 {
-    header('Location: departamentos.php');
+    header('Location: /departamentos/index.php');
+}
+
+function volver_empleados()
+{
+    header('Location: /empleados/index.php');
 }
 
 function obtener_post(string $par): ?string

@@ -3,26 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>odificar un departamento</title>
+    <title>Insertar un nuevo departamento</title>
 </head>
 <body>
     <?php
-    require 'auxiliar.php';
+    require '../auxiliar.php';
 
-    if (!isset($_GET['id'])) {
-        return volver_departamentos();
-    }
-
-    $id = trim($_GET['id']);
-    $pdo = conectar();
-
-    $departamento = buscar_departamento_por_id($id, $pdo);
-
-    if (!$departamento) {
-        return volver_departamentos();
-    }
-
-    extract($departamento);
+    $codigo = $denominacion = $localidad = null;
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $codigo = obtener_post('codigo');
@@ -37,18 +24,14 @@
             comprobar_localidad($localidad, $errores);
             // Hacer la inserción
             if (empty($errores)) {
-                // Modificar
+                // Insertar
                 $pdo = conectar();
-                $sent = $pdo->prepare(' UPDATE departamentos
-                                        SET codigo = :codigo,
-                                        denominacion = :denominacion,
-                                        localidad = :localidad
-                                        where id = :id');
+                $sent = $pdo->prepare('INSERT INTO departamentos (codigo, denominacion, localidad)
+                                       VALUES (:codigo, :denominacion, :localidad)');
                 $sent->execute([
                     ':codigo' => $codigo,
                     ':denominacion' => $denominacion,
                     ':localidad' => $localidad,
-                    ':id' => $id
                 ]);
                 // Volver
                 return volver_departamentos();
@@ -76,8 +59,7 @@
          <label for="localidad">Localidad</label>
          <input type="text" name="localidad" id="localidad"
                 value="<?= $localidad ?>"><br>
-         <button type="submit">Modificar</button>
-         <a href="departamentos.php"<button type="button">Cancelar</button></a>
+         <button type="submit">Insertar</button>
      </form>
  </body>
  </html>
