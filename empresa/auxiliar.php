@@ -2,7 +2,7 @@
 
 function conectar()
 {
-    return new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'salvadorjimenez1993');
+    return new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'empresa');
 }
 
 function buscar_departamento_por_id($id, ?PDO $pdo = null)
@@ -16,14 +16,14 @@ function buscar_departamento_por_id($id, ?PDO $pdo = null)
     return $sent->fetch();
 }
 
-function buscar_empleado_por_id($id, ?PDO $pdo = null)
+function buscar_departamento_por_codigo($codigo, ?PDO $pdo = null)
 {
     if ($pdo === null) {
         $pdo = conectar();
     }
 
-    $sent = $pdo->prepare('SELECT * FROM empleados WHERE id = :id');
-    $sent->execute([':id' => $id]);
+    $sent = $pdo->prepare('SELECT * FROM departamentos WHERE codigo = :codigo');
+    $sent->execute([':codigo' => $codigo]);
     return $sent->fetch();
 }
 
@@ -55,14 +55,11 @@ function comprobar_codigo($codigo, &$errores, ?PDO $pdo = null, $id = null)
         $errores[] = 'El código tiene un formato incorrecto';
     }
     if (empty($errores)) {
-        $pdo = conectar();
-        $sent = $pdo->prepare('SELECT COUNT(*)
-                                 FROM departamentos
-                                WHERE codigo = :codigo');
-        $sent->execute([':codigo' => $codigo]);
-        $cantidad = $sent->fetchColumn();
-        if ($cantidad > 0) {
-            $errores[] = 'Ya existe un departamento con ese código';
+        $departamento = buscar_departamento_por_codigo($codigo, $pdo);
+        if ($departamento) {
+            if ($id == null || ($id != null && $departamento['id'] != $id)) {
+                $errores[] = 'Ya existe un departamento con ese código';
+            }
         }
     }
 }
@@ -84,7 +81,7 @@ function comprobar_localidad(&$localidad, &$errores)
         $errores[] = 'La localidad es demasiado larga';
     }
 
-    if ($localidad == "") {
+    if ($localidad == '') {
         $localidad = null;
     }
 }
