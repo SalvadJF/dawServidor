@@ -38,7 +38,7 @@
                     <td><?= $salario ?></td>
                     <td><?= (new DateTime($fila['fecha_alta']))->format('d-m-Y') ?></td>
                     <td><?= "({$fila['codigo']}) {$fila['denominacion']}" ?></td>
-                    <td><a href="/empleados/borrar.php?id=<?= $fila['id'] ?>">Borrar</a></td>
+                    <td><a href="borrar.php?id=<?= $fila['id'] ?>">Borrar</a></td>
                     <td><a href="modificar.php?id=<?= $fila['id'] ?>">Modificar</a></td>
                 </tr>
             <?php endforeach ?>
@@ -67,6 +67,8 @@
 
     $pdo = conectar();
     $numero = isset($_GET['numero']) ? trim($_GET['numero']) : '';
+
+    cabecera();
     ?>
     <form action="" method="get">
         <label for="numero">Número:</label>
