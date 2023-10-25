@@ -91,6 +91,14 @@ function cabecera()
     <p align="right">
         <a href="/empleados/">Empleados</a>
         <a href="/departamentos/">Departamentos</a>
+        <?php if (isset($_SESSION['login'])): ?>
+            <?= $_SESSION['login'] ?>
+            <form action="/usuarios/logout.php" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        <?php else: ?>
+            <a href="/usuarios/login.php">Login</a>
+        <?php endif ?>
     </p>
 
     <hr>
@@ -99,9 +107,62 @@ function cabecera()
 
 function hh($cadena)
 {
-    if ($cadena === null) {
-        return null;
+    return ($cadena === null)
+        ? null
+        : htmlspecialchars($cadena, ENT_QUOTES | ENT_SUBSTITUTE);
+}
+
+function csrf()
+{
+    // si la cookie está, usarla
+    // si no, crearla primero
+    if (isset($_COOKIE['_csrf'])) {
+        $_csrf = $_COOKIE['_csrf'];
+    } else {
+        $_csrf = bin2hex(random_bytes(32));
+        setcookie('_csrf', $_csrf);
     }
 
-    return htmlspecialchars($cadena, ENT_QUOTES | ENT_SUBSTITUTE);
+    return $_csrf;
+}
+
+function campo_csrf($_csrf = null)
+{
+    if ($_csrf === null) {
+        $_csrf = csrf();
+    }
+    ?>
+    <input type="hidden" name="_csrf" value="<?= $_csrf ?>">
+    <?php
+}
+
+function validar_csrf()
+{
+    if (!isset($_POST['_csrf'])) {
+        return false;
+    }
+
+    $_csrf = $_POST['_csrf'];
+
+    if (!isset($_COOKIE['_csrf'])) {
+        return false;
+    }
+
+    if ($_csrf != $_COOKIE['_csrf']) {
+        return false;
+    }
+
+    return true;
+}
+
+function usuario_esta_logueado()
+{
+    return isset($_SESSION['login']);
+}
+
+function comprobar_si_logueado()
+{
+    if (!usuario_esta_logueado()) {
+        header('Location: /usuarios/login.php');
+    }
 }
