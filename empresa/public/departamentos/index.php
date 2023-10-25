@@ -1,15 +1,17 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
     <title>Departamentos</title>
 </head>
 
 <body>
     <?php
-    require '../auxiliar.php';
+    require '../../src/auxiliar.php';
 
     function mostrar_tabla(PDOStatement $sent)
     { ?>
@@ -57,6 +59,16 @@
     $codigo = isset($_GET['codigo']) ? trim($_GET['codigo']) : '';
 
     cabecera();
+
+    if (isset($_SESSION['error'])) {
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+    }
+
+    if (isset($_SESSION['exito'])) {
+        echo $_SESSION['exito'];
+        unset($_SESSION['exito']);
+    }
     ?>
 
     <form action="" method="get">
@@ -81,6 +93,7 @@
         }
     }
     ?>
+    <script src="../js/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 
 function conectar()
 {
-    return new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'empresa');
+    return new PDO('pgsql:host=localhost;dbname=empresa', 'empresa', 'salvadorjimenez1993');
 }
 
 function buscar_departamento_por_id($id, ?PDO $pdo = null)

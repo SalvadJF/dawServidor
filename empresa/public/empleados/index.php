@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +33,10 @@
                             : '';
                 ?>
                 <tr>
-                    <td><?= $fila['numero'] ?></td>
-                    <td><?= $fila['nombre'] ?></td>
-                    <td><?= $fila['apellidos'] ?></td>
-                    <td><?= $salario ?></td>
+                    <td><?= hh($fila['numero']) ?></td>
+                    <td><?= hh($fila['nombre']) ?></td>
+                    <td><?= hh($fila['apellidos']) ?></td>
+                    <td><?= hh($salario) ?></td>
                     <td><?= (new DateTime($fila['fecha_alta']))->format('d-m-Y') ?></td>
                     <td><?= "({$fila['codigo']}) {$fila['denominacion']}" ?></td>
                     <td><a href="borrar.php?id=<?= $fila['id'] ?>">Borrar</a></td>
@@ -63,6 +64,14 @@
                                 WHERE numero = :numero');
         $sent->execute([':numero' => $numero]);
         return $sent->fetchColumn();
+    }
+
+    comprobar_si_logueado();
+
+    if ($_SESSION['login'] != 'pepe@gmail.com') {
+        $_SESSION['error'] = 'Acceso no autorizado';
+        header('Location: /departamentos/');
+        return;
     }
 
     $pdo = conectar();
