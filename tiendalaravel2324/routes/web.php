@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* Prueba para demostrar como funciona el enrutador
+Route::get('/salva', function () {
+    return 'Hola mundo';
+});
+*/
+
+Route::get('/categorias', function () {
+    return view('');
+});
