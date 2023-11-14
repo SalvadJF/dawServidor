@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
             $table->string('denominacion');
-            $table->decimal('precio', 6,2);
+            $table->decimal('precio', 6, 2);
             $table->foreignId('categoria_id')->constrained();
             $table->timestamps();
         });

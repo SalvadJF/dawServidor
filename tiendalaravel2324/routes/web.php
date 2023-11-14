@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,10 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/salva', function() {
+Route::get('/salva', function () {
     return view('salva');
 });
 
-Route::resource('/categoria', CategoriaController::class);
+Route::resource('categorias', CategoriaController::class);
 
 require __DIR__.'/auth.php';

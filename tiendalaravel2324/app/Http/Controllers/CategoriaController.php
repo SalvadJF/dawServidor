@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categoria;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -12,9 +12,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('categorias.index'); [
-            'categorias' => $categorias = Categoria::all()
-        ];
+        return view('categorias.index', [
+            'categorias' => Categoria::all(),
+        ]);
     }
 
     /**
@@ -22,7 +22,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
@@ -30,21 +30,21 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'Store';
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(categoria $categoria)
+    public function show(Categoria $categoria)
     {
-        //
+        return 'Hola, soy el Show';
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(categoria $categoria)
+    public function edit(Categoria $categoria)
     {
         //
     }
@@ -52,7 +52,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, Categoria $categoria)
     {
         //
     }
@@ -60,8 +60,9 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(categoria $categoria)
+    public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }
