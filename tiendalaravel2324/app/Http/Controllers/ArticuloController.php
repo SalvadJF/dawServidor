@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articulo;
-use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -13,25 +12,9 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-
-        $articulos = Articulo::all();
-        $categorias = Categoria::all();
-        $articulo_categoria = "";
-
-        foreach ($articulos as $articulo) {
-            foreach ($categorias as $categoria) {
-                if ($articulo->categoria_id == $categoria->id) {
-                    $articulo_categoria = $categoria->name;
-                }
-            }
-        }
-
         return view('articulos.index', [
-            'articulos' => $articulos,
-            'categorias' => $categorias,
-            'articulo_categoria' => $articulo_categoria,
+            'articulos' => Articulo::all(),
         ]);
-
     }
 
     /**
@@ -49,14 +32,12 @@ class ArticuloController extends Controller
     {
         $validate = $request->validate([
             'nombre' => 'required|max:255',
+            'denominacion' => 'required|max:255',
+            'precio' => 'required|numeric|decimal:2|between:-9999.99,9999.99',
+            'categoria_id' => 'required|integer|exists:categorias,id'
         ]);
 
-        $articulo = new Articulo();
-        $articulo->nombre = $request->input('nombre');
-        $articulo->denominacion = $request->input('denominacion');
-        $articulo->precio = $request->input('precio');;
-        $articulo->categoria_id = $request->input('categoria');
-        $articulo->save();
+        Articulo::create($request->input());
         return redirect()->route('articulos.index');
     }
 
