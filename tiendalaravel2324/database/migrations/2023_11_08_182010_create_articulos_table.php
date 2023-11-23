@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('denominacion');
             $table->decimal('precio', 6, 2);
             $table->foreignId('categoria_id')->constrained();
+            $table->foreignId('iva_id')->constrained();
             $table->timestamps();
         });
     }

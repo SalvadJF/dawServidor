@@ -11,13 +11,19 @@ class Articulo extends Model
     use HasFactory;
 
     /**
-     * Atributos  de asigancion masiva
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
-
     protected $fillable = ['denominacion', 'precio', 'categoria_id'];
 
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function iva(): BelongsTo
+    {
+        return $this->belongsTo(Iva::class);
     }
 }
