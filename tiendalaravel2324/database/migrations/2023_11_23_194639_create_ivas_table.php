@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,10 +14,16 @@ return new class extends Migration
     {
         Schema::create('ivas', function (Blueprint $table) {
             $table->id();
-            $table->set('tipo', ['normal', 'reducido', 'super reducido']);
-            $table->set('porcentaje', [21, 12, 2]);
+            $table->string('tipo');
+            $table->decimal('por', 4, 2);
             $table->timestamps();
         });
+        DB::table('ivas')->insert([
+            ['tipo' => 'General', 'por' => 21.0],
+            ['tipo' => 'Reducido', 'por' => 10.0],
+            ['tipo' => 'Super Reducido', 'por' => 4.0]
+
+        ]);
     }
 
     /**

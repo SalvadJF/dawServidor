@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articulos', function (Blueprint $table) {
-            $table->id();
-            $table->string('denominacion');
-            $table->decimal('precio', 6, 2);
-            $table->foreignId('categoria_id')->constrained();
-            $table->timestamps();
+        Schema::table('articulos', function (Blueprint $table) {
+            $table->foreignId('iva_id')->default(1)->constrained
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articulos');
+        Schema::table('articulos', function (Blueprint $table) {
+            $table->dropColumn('iva_id');
+        });
     }
 };
