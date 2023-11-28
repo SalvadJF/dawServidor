@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Articulo;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('categorias', CategoriaController::class);
+Route::resource('categorias', CategoriaController::class)
+->middleware('auth');
 
 Route::resource('articulos', ArticuloController::class);
 
