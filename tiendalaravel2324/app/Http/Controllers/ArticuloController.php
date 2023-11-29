@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Articulo;
 use App\Models\Categoria;
+use App\Models\Iva;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -11,11 +12,20 @@ class ArticuloController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articulos = Articulo::with(['categoria', 'iva'])->get();
+        $order = $request->query('order', 'denominacion');
+        $order_dir = $request->query('order_dir', 'asc');
+        $articulos = Articulo::with(['iva', 'categoria'])
+            ->leftJoin('categorias', 'articulos.categoria_id', '=', 'categorias.id')
+            ->leftJoin('ivas', 'articulos.iva_id', '=', 'ivas.id')
+            ->orderBy($order, $order_dir)
+            ->orderBy('denominacion')
+            ->paginate(3);
         return view('articulos.index', [
             'articulos' => $articulos,
+            'order' => $order,
+            'order_dir' => $order_dir,
         ]);
     }
 
@@ -26,6 +36,7 @@ class ArticuloController extends Controller
     {
         return view('articulos.create', [
             'categorias' => Categoria::all(),
+            'ivas' => Iva::all(),
         ]);
     }
 
@@ -55,6 +66,7 @@ class ArticuloController extends Controller
         return view('articulos.edit', [
             'articulo' => $articulo,
             'categorias' => Categoria::all(),
+            'ivas' => Iva::all(),
         ]);
     }
 
@@ -83,6 +95,7 @@ class ArticuloController extends Controller
             'denominacion' => 'required|max:255',
             'precio' => 'required|numeric|decimal:2|between:-9999.99,9999.99',
             'categoria_id' => 'required|integer|exists:categorias,id',
+            'iva_id' => 'required|integer|exists:ivas,id'
         ]);
     }
 }

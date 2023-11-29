@@ -21,8 +21,7 @@ return new class extends Migration
         DB::table('ivas')->insert([
             ['tipo' => 'General', 'por' => 21.0],
             ['tipo' => 'Reducido', 'por' => 10.0],
-            ['tipo' => 'Super Reducido', 'por' => 4.0]
-
+            ['tipo' => 'Súperreducido', 'por' => 4.00],
         ]);
     }
 

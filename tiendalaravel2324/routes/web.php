@@ -1,10 +1,10 @@
 <?php
 
+use App\Generico\Carrito;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Articulo;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('principal', [
-        'articulos' => Articulo::all(),
+        'articulos' => Articulo::with(['iva', 'categoria'])->get(),
+        'carrito' => carrito(),
     ]);
-});
+})->name('principal');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,9 +36,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/ricardo', function () {
+    return view('ricardo');
+});
+
 Route::resource('categorias', CategoriaController::class)
-->middleware('auth');
+    ->middleware('auth');
 
 Route::resource('articulos', ArticuloController::class);
+
+Route::get('/carrito/insertar/{id}', function ($id) {
+    $articulo = Articulo::findOrFail($id);
+    $carrito = carrito();
+    $carrito->insertar($id);
+    session()->put('carrito', $carrito);
+    return redirect()->route('principal');
+})->name('carrito.insertar')->whereNumber('id');
+
+Route::get('/carrito/vaciar', function () {
+    session()->forget('carrito');
+    return redirect()->route('principal');
+})->name('carrito.vaciar');
 
 require __DIR__.'/auth.php';
