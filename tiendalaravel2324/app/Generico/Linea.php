@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Generico;
+
 use App\Models\Articulo;
 
-class lineas
+class Linea
 {
-    private Articulo $articulos;
+    private Articulo $articulo;
     private int $cantidad;
 
-    public function __construct(Articulo $articulos, int $cantidad = 1)
+    public function __construct(Articulo $articulo, int $cantidad = 1)
     {
-        $this->articulos = $articulos;
+        $this->articulo = $articulo;
         $this->cantidad = $cantidad;
     }
 
-    public function getArticulos(): Articulo
+    public function getArticulo(): Articulo
     {
-        return $this->articulos;
+        return $this->articulo;
     }
 
     public function getCantidad(): int
@@ -33,6 +34,4 @@ class lineas
     {
         $this->cantidad--;
     }
-
-
 }

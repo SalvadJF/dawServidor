@@ -15,7 +15,7 @@ class Articulo extends Model
      *
      * @var array
      */
-    protected $fillable = ['denominacion', 'precio', 'categoria_id', 'iva_id', ];
+    protected $fillable = ['denominacion', 'precio', 'categoria_id', 'iva_id'];
 
     public function categoria(): BelongsTo
     {
@@ -27,7 +27,7 @@ class Articulo extends Model
         return $this->belongsTo(Iva::class);
     }
 
-    public function getPrecioiiAttributes()
+    public function getPrecioIiAttribute()
     {
         return $this->precio * (1 + $this->iva->por / 100);
     }

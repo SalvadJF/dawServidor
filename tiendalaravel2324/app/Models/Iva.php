@@ -10,10 +10,8 @@ class Iva extends Model
 {
     use HasFactory;
 
-
     public function articulos(): HasMany
     {
         return $this->hasMany(Articulo::class);
     }
-
 }
