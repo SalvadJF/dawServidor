@@ -1,68 +1,61 @@
 <x-app-layout>
-    <div class="w-1/2 mx-auto">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <form method="POST" action="{{ route('articulos.store') }}">
             @csrf
-
-            <!-- Nombre -->
+            <!-- Name -->
             <div>
-                <x-input-label for="denominacion" :value="'Denominación del artículo'" />
-                <x-text-input id="denominacion" class="block mt-1 w-full"
-                    type="text" name="denominacion" :value="old('denominacion')" required
-                    autofocus autocomplete="denominacion" />
+                <x-input-label for="denominacion" :value="'Nombre del artículo'" />
+                <x-text-input id="denominacion" class="block mt-1 w-full" type="text" name="denominacion"
+                    :value="old('denominacion')" required autofocus autocomplete="denominacion" />
                 <x-input-error :messages="$errors->get('denominacion')" class="mt-2" />
             </div>
 
+            <!-- Descripción -->
+            <div>
+                <x-input-label for="descripcion" :value="'Descripción del artículo'" />
+                <x-text-input id="descripcion" class="block mt-1 w-full" type="text" name="descripcion"
+                    :value="old('descripcion')" required autofocus autocomplete="descripcion" />
+                <x-input-error :messages="$errors->get('descripcion')" class="mt-2" />
+            </div>
+
             <!-- Precio -->
-            <div class="mt-4">
+            <div>
                 <x-input-label for="precio" :value="'Precio del artículo'" />
-                <x-text-input id="precio" class="block mt-1 w-full"
-                    type="text" name="precio" :value="old('precio')" required
-                    autofocus autocomplete="precio" />
+                <x-text-input id="precio" class="block mt-1 w-full" type="text" name="precio"
+                    :value="old('precio')" required autofocus autocomplete="precio" />
                 <x-input-error :messages="$errors->get('precio')" class="mt-2" />
             </div>
 
-            <!-- IVA -->
-            <div class="mt-4">
-                <x-input-label for="iva_id" :value="'IVA del artículo'" />
-                <select id="iva_id"
-                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"
-                    name="iva_id" required>
+            <!-- IVa -->
+            <div>
+                <select id="iva_id" name="iva_id" required
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full">
                     @foreach ($ivas as $iva)
-                        <option value="{{ $iva->id }}"
-                            {{ old('iva_id') == $iva->id ? 'selected' : '' }}
-                            >
-                            {{ $iva->tipo }}
-                        </option>
+                        <option value="{{ $iva->id }}" {{ old('iva_id') == $iva->id ? 'selected' : '' }}>
+                            {{ $iva->por . '% - ' . $iva->tipo }}</option>
                     @endforeach
                 </select>
-                <x-input-error :messages="$errors->get('iva_id')" class="mt-2" />
             </div>
 
-            <!-- Categoría -->
-            <div class="mt-4">
-                <x-input-label for="categoria_id" :value="'Categoría del artículo'" />
-                <select id="categoria_id"
-                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full"
-                    name="categoria_id" required>
+            <!-- Categoria -->
+            <div>
+                <select id="categoria_id" name="categoria_id" required
+                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full">
                     @foreach ($categorias as $categoria)
                         <option value="{{ $categoria->id }}"
-                            {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}
-                            >
-                            {{ $categoria->nombre }}
+                            {{ old('categoria_id') == $categoria->id ? 'selected' : '' }}>{{ $categoria->nombre }}
                         </option>
                     @endforeach
                 </select>
-                <x-input-error :messages="$errors->get('categoria_id')" class="mt-2" />
             </div>
-
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-end mt-">
                 <a href="{{ route('articulos.index') }}">
-                    <x-secondary-button class="ms-4">
+                    <x-secondary-button class="m-4">
                         Volver
-                        </x-primary-button>
+                    </x-secondary-button>
                 </a>
-                <x-primary-button class="ms-4">
-                    Insertar
+                <x-primary-button class="ms-4 bg-green-700">
+                    Crear artículo
                 </x-primary-button>
             </div>
         </form>

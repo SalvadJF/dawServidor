@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Generico\Carrito;
 use App\Models\Articulo;
 use App\Models\Categoria;
 use App\Models\Iva;
@@ -15,18 +16,15 @@ class ArticuloController extends Controller
     public function index(Request $request)
     {
         $order = $request->query('order', 'denominacion');
-        $order_dir = $request->query('order_dir', 'asc');
-        $articulos = Articulo::with(['iva', 'categoria'])
-            ->selectRaw('articulos.*')
-            ->leftJoin('categorias', 'articulos.categoria_id', '=', 'categorias.id')
-            ->leftJoin('ivas', 'articulos.iva_id', '=', 'ivas.id')
-            ->orderBy($order, $order_dir)
+        $direccion = $request->query('direccion', 'asc');
+        $articulos = Articulo::with('categoria', 'iva')
+            ->orderBy($order, $direccion)
             ->orderBy('denominacion')
-            ->paginate(3);
+            ->paginate(10);
         return view('articulos.index', [
             'articulos' => $articulos,
+            'direccion' => $direccion,
             'order' => $order,
-            'order_dir' => $order_dir,
         ]);
     }
 
@@ -47,8 +45,12 @@ class ArticuloController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validar($request);
+        $denominacion = $request->input('denominacion'); //Esto lo hago para arrastrar el nombre y colorearlo luego en verde al insertar el artículo nuevo.
         Articulo::create($validated);
-        return redirect()->route('articulos.index');
+        if ($validated) {
+            session()->flash('exito', 'El articulo se ha creado correctamente');
+        }
+        return redirect()->route('articulos.index',)->with('denominacion', $denominacion);
     }
 
     /**
@@ -65,7 +67,7 @@ class ArticuloController extends Controller
     public function edit(Articulo $articulo)
     {
         return view('articulos.edit', [
-            'articulo' => $articulo,
+            'articulo'  => $articulo,
             'categorias' => Categoria::all(),
             'ivas' => Iva::all(),
         ]);
@@ -77,8 +79,11 @@ class ArticuloController extends Controller
     public function update(Request $request, Articulo $articulo)
     {
         $validated = $this->validar($request);
-        $articulo->update($validated);
-        return redirect()->route('articulos.index');
+        if ($validated) {
+            $articulo->update($validated);
+            session()->flash('exito', 'El artículo se ha actualizado correctamente');
+            return redirect()->route('articulos.index')->with('denominacion', $request->input('denominacion'));
+        }
     }
 
     /**
@@ -87,16 +92,35 @@ class ArticuloController extends Controller
     public function destroy(Articulo $articulo)
     {
         $articulo->delete();
+        session()->flash('exito', 'El artículo se ha borrado correctamente');
         return redirect()->route('articulos.index');
     }
 
-    private function validar(Request $request)
+    private function validar(REQUEST $request)
     {
         return $request->validate([
-            'denominacion' => 'required|max:255',
-            'precio' => 'required|numeric|decimal:2|between:-9999.99,9999.99',
+            'denominacion' => 'required|string|max:255',
+            'precio' => 'required|numeric|between:-9999.99,9999.99',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'iva_id' => 'required|integer|exists:ivas,id'
+            'iva_id' => 'required|integer|exists:ivas,id',
+            'descripcion' => 'nullable|string|max:255'
+        ]);
+    }
+
+    public function buscar(Request $request)
+    {
+        $categoria = $request->input('categoria'); //TODO: Realiza validación
+
+        // Búsqueda en la base de datos
+
+        // Búsqueda en la base de datos
+        $articulos = Articulo::whereHas('categoria', function ($query) use ($categoria) {
+            $query->where('nombre', 'like', '%' . $categoria . '%');
+        })->get();
+
+        return view('principal', [
+            'articulos' => $articulos,
+            'carrito' => Carrito::carrito(),
         ]);
     }
 }

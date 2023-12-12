@@ -3,18 +3,18 @@
 namespace App\Generico;
 
 use App\Models\Articulo;
+use Illuminate\Support\Facades\Auth;
 use ValueError;
 
 class Carrito
 {
-    /**
-     * @var Linea[] $lineas
-     */
     private array $lineas;
+    private float $total_carrito;
 
     public function __construct()
     {
         $this->lineas = [];
+        $this->total_carrito = 0;
     }
 
     public function insertar($id)
@@ -23,34 +23,58 @@ class Carrito
             throw new ValueError('El artículo no existe.');
         }
 
+        $user = Auth::user();
+
+        // Control de stock
+        if ($articulo->stock < 1) {
+            session()->flash('error', 'Actualmente no existe stock disponible para añadir al carrito.');
+            return redirect()->route('principal');
+        }
+
+
+
         if (isset($this->lineas[$id])) {
+            if ($this->lineas[$id]->getCantidad() == $articulo->stock) {
+                session()->flash('error', 'Actualmente no existe stock disponible para añadir al carrito.');
+                return redirect()->route('principal');
+            }
             $this->lineas[$id]->incrCantidad();
+            $this->recalcularTotal();
+            if (isset($user)) {
+                $user->listaDeseos()->detach($id);
+            }
         } else {
             $this->lineas[$id] = new Linea($articulo);
+            $this->recalcularTotal();
+            if (isset($user)) {
+                $user->listaDeseos()->detach($id);
+            }
         }
     }
 
     public function eliminar($id)
     {
         if (!isset($this->lineas[$id])) {
-            throw new ValueError('Artículo inexistente en el carrito.');
+            throw new ValueError('Artículo inexistente en el carrito');
         }
 
         $this->lineas[$id]->decrCantidad();
+        $this->recalcularTotal();
         if ($this->lineas[$id]->getCantidad() == 0) {
             unset($this->lineas[$id]);
         }
     }
 
-    public function vacio(): bool
+    public function vacio()
     {
         return empty($this->lineas);
     }
 
-    public function getLineas(): array
+    public function getLineas()
     {
         return $this->lineas;
     }
+
 
     public static function carrito()
     {
@@ -59,5 +83,18 @@ class Carrito
         }
 
         return session('carrito');
+    }
+
+    public function recalcularTotal()
+    {
+        $this->total_carrito = 0;
+        foreach ($this->lineas as $linea) {
+            $this->total_carrito += $linea->getTotalArticulo();
+        }
+    }
+
+    public function getTotalCarrito()
+    {
+        return $this->total_carrito;
     }
 }

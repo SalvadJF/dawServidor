@@ -1,68 +1,66 @@
 <x-app-layout>
-    <div class="relative overflow-x-auto w-auto mx-8 mshadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div class="relative overflow-x-auto w-full h-full">
+        <table class="w-full h-full text-sm text-center text-gray-500 dark:text-gray-400">
+            <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
-                        <a href="{{ route('articulos.index', ['order' => 'denominacion', 'order_dir' => order_dir($order == 'denominacion', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Denominación {{ order_dir_arrow($order == 'denominacion', $order_dir) }}
+                    <th scope="col" class="px-7 py-3">
+                        <a href="{{ route('articulos.index', ['order' => 'denominacion', 'direccion' => order_direccion($order == 'denominacion', $direccion)]) }}" class="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer">
+                            Nombre Artículo {{ flechas($order == 'denominacion', $direccion) }}
+
                         </a>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <a href="{{ route('articulos.index', ['order' => 'precio', 'order_dir' => order_dir($order == 'precio', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Precio {{ order_dir_arrow($order == 'precio', $order_dir) }}
+                    <th scope="col" class="px-7 py-3">
+                        <a href="{{ route('articulos.index', ['order' => 'precio', 'direccion' => order_direccion($order == 'precio', $direccion)]) }}" class="text-blue-500 hover:text-blue-700 font-semibold cursor-pointer">
+                            Precio {{ flechas($order == 'precio', $direccion) }}
                         </a>
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Precio (I. I.)
+                    <th scope="col" class="px-7 py-3">
+                        Iva
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <a href="{{ route('articulos.index', ['order' => 'por', 'order_dir' => order_dir($order == 'por', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            IVA {{ order_dir_arrow($order == 'por', $order_dir) }}
-                        </a>
+                    <th scope="col" class="px-7 py-3">
+                        Precio I.I.
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        <a href="{{ route('articulos.index', ['order' => 'nombre', 'order_dir' => order_dir($order == 'nombre', $order_dir)]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Categoría {{ order_dir_arrow($order == 'nombre', $order_dir) }}
-                        </a>
+                    <th scope="col" class="px-7 py-3]">
+                        Categoría
                     </th>
-                    <th scope="col" class="px-6 py-3" colspan="2">
-                        Acción
+                    <th scope="col" class="px-7 py-3" colspan="2">
+                        Acciones
                     </th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $denominacion = session('denominacion');
+                @endphp
                 @foreach ($articulos as $articulo)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr class="{{ session()->has('exito') && isset($denominacion) && $denominacion == $articulo->denominacion ? 'bg-green-100' : '' }}">
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                             {{ truncar($articulo->denominacion) }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        </td>
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                             {{ dinero($articulo->precio) }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ dinero($articulo->precio_ii) }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" title="{{ $articulo->iva->tipo }}">
-                            {{ $articulo->iva->por . " %" }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="{{ route('categorias.edit', ['categoria' => $articulo->categoria]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        </td>
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500" title="{{ $articulo->iva->tipo }}">
+                            {{ " {$articulo->iva->por}%" }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                            {{ $articulo->precio_ii . ' €'}}
+                        </td>
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                                 {{ $articulo->categoria->nombre }}
-                            </a>
-                        </th>
-                        <td class="px-6 py-4">
-                            <a href="{{ route('articulos.edit', ['articulo' => $articulo]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                <x-primary-button>
+                                                    </td>
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                            <a href="{{ route('articulos.edit', ['articulo' => $articulo]) }}">
+                                <x-primary-button class="bg-blue-500">
                                     Editar
                                 </x-primary-button>
                             </a>
                         </td>
-                        <td class="px-6 py-4">
-                            <form action="{{ route('articulos.destroy', ['articulo' => $articulo]) }}" method="POST">
+                        <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                            <form method="post" action="{{ route('articulos.destroy', ['articulo' => $articulo]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <x-primary-button class="bg-red-500">
+                                <x-primary-button class="bg-red-700">
                                     Borrar
                                 </x-primary-button>
                             </form>
@@ -71,9 +69,11 @@
                 @endforeach
             </tbody>
         </table>
-        <form action="{{ route('articulos.create') }}" class="flex justify-center mt-4 mb-4">
-            <x-primary-button class="bg-green-500">Insertar un nuevo artículo</x-primary-button>
-        </form>
-        {{ $articulos->withQueryString()->links() }}
     </div>
+    <div>
+        <form action="{{ route('articulos.create') }}" method="get">
+            <x-primary-button class="bg-green-700 m-4">Crear nuevo artículo</x-primary-button>
+        </form>
+    </div>
+    {{ $articulos->links() }}
 </x-app-layout>

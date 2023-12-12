@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Articulo extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['denominacion', 'precio', 'categoria_id', 'iva_id'];
+    protected $fillable =['denominacion', 'precio', 'categoria_id', 'iva_id', 'descripcion', 'stock'];
 
     public function categoria(): BelongsTo
     {
@@ -32,7 +28,12 @@ class Articulo extends Model
         return $this->precio * (1 + $this->iva->por / 100);
     }
 
-    public function facturas()
+    public function deseadoPorUsuarios(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function facturas(): BelongsToMany
     {
         return $this->belongsToMany(Factura::class)->withPivot('cantidad');
     }

@@ -12,8 +12,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        $categorias = Categoria::all();
         return view('categorias.index', [
-            'categorias' => Categoria::all(),
+            'categorias' => $categorias,
         ]);
     }
 
@@ -30,14 +31,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|max:255',
-        ]);
 
-        $categoria = new Categoria();
-        $categoria->nombre = $request->input('nombre');
-        $categoria->save();
-        session()->flash('success', 'La categoría se ha creado correctamente.');
+        $validated = $this->valida($request);
+        if ($validated) {
+            session()->flash('exito','La categoría se ha creado correctamente');
+        }
+        Categoria::create($validated);
         return redirect()->route('categorias.index');
     }
 
@@ -46,7 +45,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        return 'Hola, soy el Show';
+        return 'Soy el show';
     }
 
     /**
@@ -55,7 +54,7 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         return view('categorias.edit', [
-            'categoria' => $categoria,
+            'categoria' => $categoria
         ]);
     }
 
@@ -64,12 +63,8 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        $validated = $request->validate([
-            'nombre' => 'required|max:255',
-        ]);
-
-        $categoria->nombre = $request->input('nombre');
-        $categoria->save();
+        $validated = $this->valida($request);
+        $categoria->update($validated);
         return redirect()->route('categorias.index');
     }
 
@@ -81,8 +76,15 @@ class CategoriaController extends Controller
         if ($categoria->articulos->isEmpty()) {
             $categoria->delete();
         } else {
-            session()->flash('error', 'La categoría tiene artículos.');
+            session()->flash('error', 'La categoría tiene artículos');
         }
         return redirect()->route('categorias.index');
+    }
+
+    private function valida(REQUEST $request)
+    {
+        return $request->validate([
+            'nombre' => 'required|string|max:40',
+        ]);
     }
 }

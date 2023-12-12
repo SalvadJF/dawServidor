@@ -4,11 +4,13 @@ use App\Generico\Carrito;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\IvaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishListController;
 use App\Models\Articulo;
-use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +26,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('principal', [
-        'articulos' => Articulo::with(['iva', 'categoria'])->get(),
-        'carrito' => carrito(),
+        'articulos' => Articulo::with('iva', 'categoria')->get(),
+        'carrito' => Carrito::carrito(),
+    ]);
+})->name('principal');
+
+Route::get('/principal', function () {
+    return view('principal', [
+        'articulos' => Articulo::with('iva', 'categoria')->get(),
+        'carrito' => Carrito::carrito(),
     ]);
 })->name('principal');
 
@@ -39,78 +48,33 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::view('/ricardo', 'ricardo');
-
-Route::resource('categorias', CategoriaController::class)
-    ->middleware('auth');
 
 Route::resource('articulos', ArticuloController::class);
 
-Route::get('/carrito/insertar/{id}', [CarritoController::class, 'insertar'])
-    ->name('carrito.insertar')->whereNumber('id');
+Route::resource('categorias', CategoriaController::class)->middleware('auth');
 
-Route::get('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])
-    ->name('carrito.eliminar')->whereNumber('id');
+Route::resource('ivas', IvaController::class)->middleware('auth');
 
-Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])
-    ->name('carrito.vaciar');
+Route::get('buscar-articulos', [ArticuloController::class, 'buscar'])->name('buscar_articulos');
 
-Route::get('/comprar', function () {
-    return view('comprar', [
-        'carrito' => carrito(),
-    ]);
-})->middleware('auth')->name('comprar');
+Route::get('/carrito/insertar/{id}', [CarritoController::class, 'insertar'])->name('carrito.insertar')->whereNumber('id');
 
-Route::post('/realizar_compra', function () {
-    $carrito = carrito();
-    DB::beginTransaction();
-    $factura = new Factura();
-    $factura->user()->associate(Auth::user());
-        // Alternativa:
-        // $factura->user_id = Auth::id();
-    $factura->save();
+Route::get('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar')->whereNumber('id');
 
-    $attachs = [];
-    foreach ($carrito->getLineas() as $articulo_id => $linea) {
-        $attachs[$articulo_id] = ['cantidad' => $linea->getCantidad()];
-    }
-    $factura->articulos()->attach($attachs);
+Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
-        // Alternativa 1:
-        // foreach ($carrito->getLineas() as $linea) {
-        //     $factura->articulos()
-        //         ->attach($linea->getArticulo(), [
-        //             'cantidad' => $linea->getCantidad()
-        //         ]);
-        // }
 
-        // Alternativa 2:
-        // $inserts = [];
-        // foreach ($carrito->getLineas() as $articulo_id => $linea) {
-        //     $inserts[] = [
-        //         'factura_id' => $factura->id,
-        //         'articulo_id' => $articulo_id,
-        //         'cantidad' => $linea->getCantidad(),
-        //     ];
-        // }
-        // DB::table('articulo_factura')->insert($inserts);
+Route::post('wishlist/add/{articulo}', [WishListController::class, 'addToWishList'])->name('wishlist.add')->middleware('auth');
+Route::post('wishlist/remove/{articulo}', [WishListController::class, 'removeWish'])->name('wishlist.remove')->middleware('auth');
 
-    DB::commit();
-    session()->flash('success', 'La factura se ha generado correctamente.');
-    session()->forget('carrito');
-    return redirect()->route('principal');
-})->middleware('auth')->name('realizar_compra');
+Route::get('/listaDeseos',[WishListController::class, 'show'])->name('listaDeseos')->middleware('auth');
 
-Route::get('facturas', function () {
-    $facturas = Auth::user()->facturas()
-        ->selectRaw('facturas.id, facturas.user_id, facturas.created_at, sum(cantidad * precio) as total')
-        ->join('articulo_factura', 'facturas.id', '=', 'articulo_factura.factura_id')
-        ->join('articulos', 'articulos.id', '=', 'articulo_factura.articulo_id')
-        ->groupBy('facturas.id')
-        ->get();
-    return view('facturas', [
-        'facturas' => $facturas,
-    ]);
-})->middleware('auth')->name('facturas.index');
+Route::resource('facturas', FacturaController::class)->middleware('auth');
 
-require __DIR__.'/auth.php';
+Route::get('/comprar', [FacturaController::class, 'create'])->middleware('auth')->name('comprar');
+
+Route::post('/realizar_compra', [FacturaController::class, 'realizarCompra'])->middleware('auth')->name('realizar_compra');
+
+Route::get('/facturas/{factura}/pdf', [FacturaController::class, 'imprimir'])->name('facturas.imprimir');
+
+require __DIR__ . '/auth.php';
