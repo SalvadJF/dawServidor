@@ -10,9 +10,15 @@ class PeliculaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $peliculas = Pelicula::all();
+        $order = $request->query('order', 'titulo');
+
+        $peliculas = Pelicula::with('genero', 'description')
+        ->selectRaw('peliculas.*')
+        ->orderBy($order)
+        ->orderBy('titulo')
+        ->get();
 
         return view('peliculas.index', [
             'peliculas' => $peliculas

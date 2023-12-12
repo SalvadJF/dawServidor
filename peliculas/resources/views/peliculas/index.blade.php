@@ -14,7 +14,7 @@
                         </a>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <a href="{{ route('peliculas.index') }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        <a href="{{ route('peliculas.index', ['order' => 'genero_id']) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                             Género
                         </a>
                     </th>
@@ -41,14 +41,17 @@
                         <th scope="row" class="px-6 py-4 font-medium
                         text-gray-900 whitespace-nowrap dark:text-white">
 
-                        <p>
-                            {{$pelicula->description->descripcion}}
-                        </p>
                             @if (isset($pelicula->description))
+                            <p>
+                                {{$pelicula->description->descripcion}}
+                            </p>
                             <a href="{{ route('descriptions.edit', ['description' => $pelicula->description]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 Editar descripción
                             </a>
                             @else
+                            <p>
+                                Sin descripción.
+                            </p>
                             <a href="{{ route('descriptions.create', ['pelicula' => $pelicula]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 Añadir descripción
                             </a>

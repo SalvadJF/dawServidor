@@ -18,7 +18,7 @@
                         {{ $pelicula->genero->nombre }}
                     </p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {{$pelicula->description}}
+                        {{$pelicula->description->descripcion}}
                     </p>
                     <a href="" class="inline-flex items-center py-3 px-3.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Alquilar película
@@ -30,7 +30,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </a>
-                    @if (Auth::user() && Auth::user()->peliculas->contains($pelicula))
+                    {{-- @if (Auth::user() && Auth::user()->peliculas->contains($pelicula))
                     <a href="{{ route('deseos.eliminar', $pelicula) }}" class="inline-flex items-center mt-5 py-2 px-3.5 text-sm font-medium text-center text-white bg-orange-400 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Eliminar a lista de deseos
                     </a>
@@ -38,7 +38,7 @@
                     <a href="" class="inline-flex items-center mt-5 py-2 px-3.5 text-sm font-medium text-center text-white bg-orange-400 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Añadir a lista de deseos
                     </a>
-                    @endif
+                    @endif --}}
                 </div>
             @endforeach
         </div>
