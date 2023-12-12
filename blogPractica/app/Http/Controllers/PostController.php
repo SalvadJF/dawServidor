@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -10,10 +13,19 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        $order = $request->query('order', 'titulo');
+        $direccion = $request->query('direccion', 'asc');
+        $posts = Post::with('comentarios', 'categorias')
+            ->orderBy($order, $direccion)
+            ->orderBy('titulo')
+            ->paginate(10);
+        return view('posts.index', [
+            'posts' => $posts,
+            'direccion' => $direccion,
+            'order' => $order
+        ]);
     }
 
     /**
@@ -21,7 +33,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+
+        return view('post.create', [
+            'users' => $user,
+            'categorias' => Categoria::all(),
+        ]);
     }
 
     /**
@@ -29,7 +46,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $this->validar($request);
+        Post::create($validated);
+        if ($validated) {
+            session()->flash('exito', 'El articulo se ha creado correctamente');
+        }
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -37,7 +59,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        //
     }
 
     /**
@@ -45,7 +67,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view ('posts.edit', [
+            'post' => $post,
+            'categorias' => Categoria::all()
+        ]);
     }
 
     /**
@@ -53,7 +78,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validated = $this->validar($request);
+        if ($validated) {
+            $post->update($validated);
+            session()->flash('exito', 'El post se ha actualizado correctamente');
+            return redirect()->route('posts.index');
+        }
     }
 
     /**
@@ -61,6 +91,18 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        session()->flash('exito', 'El post se ha borrado correctamente');
+        return redirect()->route('posts.index');
+    }
+
+    private function validar(Request $request)
+    {
+        return $request->validate([
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required|string|max:2555',
+            'categoria_id' => 'required|integer|exists:categorias,id',
+            'user_id' => 'required|integer|exists:users,id',
+        ]);
     }
 }

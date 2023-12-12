@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,16 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('principal', [
+        'posts' => Post::with('categoria', 'comentario')->get()
+    ]);
+})->name('principal');
+
+Route::get('/principal', function () {
+    return view('principal', [
+        'posts' => Post::with('categoria', 'comentario')->get()
+    ]);
+})->name('principal');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,7 +51,7 @@ Route::resource('users', UserController::class);
 Route::resource('posts', PostController::class);
 
 // Rutas para categorías
-Route::resource('categorias', CategoriaController::class);
+Route::resource('categorias', CategoriaController::class)->middleware('auth');
 
 // Rutas para comentarios
 Route::resource('comentarios', ComentarioController::class);
@@ -51,19 +60,21 @@ Route::resource('comentarios', ComentarioController::class);
 
 // Rutas para usuarios
 Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{user}', [UserController::class, 'show']);
+
 
 // Rutas para publicaciones (posts)
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{post}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/postear', [PostController::class, 'create'])->name('postear')->middleware('auth');
+Route::get('/editar', [PostController::class, 'update'])->name('editar')->middleware('auth');
+Route::get('/borrar', [PostController::class, 'destroy'])->name('borrar')->middleware('auth');
 
 // Rutas para categorías
 Route::get('/categorias', [CategoriaController::class, 'index']);
-Route::get('/categorias/{categoria}', [CategoriaController::class, 'show']);
+
 
 // Rutas para comentarios
 Route::get('/comentarios', [ComentarioController::class, 'index']);
-Route::get('/comentarios/{comentario}', [ComentarioController::class, 'show']);
+
 
 
 require __DIR__.'/auth.php';

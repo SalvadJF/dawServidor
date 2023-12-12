@@ -13,7 +13,9 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('categorias.index', compact('categorias'));
+        return view('categorias.index', [
+            'categorias' => $categorias,
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorias.create');
     }
 
     /**
@@ -29,7 +31,13 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $this->valida($request);
+        if ($validated) {
+            session()->flash('exito','La categoría se ha creado correctamente');
+        }
+        Categoria::create($validated);
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -37,7 +45,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        return view('categorias.show', compact('categoria'));
+        return 'Soy el show';
     }
 
     /**
@@ -45,7 +53,9 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('categorias.edit', [
+            'categoria' => $categoria
+        ]);
     }
 
     /**
@@ -53,7 +63,9 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $validated = $this->valida($request);
+        $categoria->update($validated);
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -61,6 +73,18 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        if ($categoria->articulos->isEmpty()) {
+            $categoria->delete();
+        } else {
+            session()->flash('error', 'La categoría tiene artículos');
+        }
+        return redirect()->route('categorias.index');
+    }
+
+    private function valida(REQUEST $request)
+    {
+        return $request->validate([
+            'nombre' => 'required|string|max:40',
+        ]);
     }
 }
