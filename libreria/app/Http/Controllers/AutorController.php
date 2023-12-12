@@ -12,7 +12,8 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        $autores = Autor::all();
+        return view("autores.index", compact("autores"));
     }
 
     /**
@@ -36,7 +37,7 @@ class AutorController extends Controller
      */
     public function show(Autor $autor)
     {
-        //
+        return view("autores.show", compact("autor"));
     }
 
     /**

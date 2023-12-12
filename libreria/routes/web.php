@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\EstanteriaController;
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\SeccionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +31,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Rutas de Recursos
+Route::resource('libros', LibroController::class);
+Route::resource('estanterias', EstanteriaController::class);
+Route::resource('autores', AutorController::class);
+Route::resource('secciones', SeccionController::class);
+
+// Rutas de web
+Route::get('/estanterias', [EstanteriaController::class, 'index']);
+Route::get('/estanterias/{estanteria}', [EstanteriaController::class,'show']);
+
+Route::get('/libros', [LibroController::class, 'index']);
+Route::get('/libros/{libro}', [LibroController::class,'show']);
+
+Route::get('/autores', [AutorController::class, 'index']);
+Route::get('/autores/{autor}', [AutorController::class,'show']);
+
+Route::get('/secciones', [SeccionController::class, 'index']);
+Route::get('/secciones/{seccion}', [SeccionController::class,'show']);
 
 require __DIR__.'/auth.php';

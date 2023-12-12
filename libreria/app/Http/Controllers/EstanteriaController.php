@@ -12,7 +12,8 @@ class EstanteriaController extends Controller
      */
     public function index()
     {
-        //
+        $estanterias = Estanteria::all();
+        return view("estanterias.index", compact("estanterias"));
     }
 
     /**
@@ -28,7 +29,7 @@ class EstanteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view("estanterias.show", compact("estanteria"));
     }
 
     /**
