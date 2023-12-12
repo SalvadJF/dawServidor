@@ -1,0 +1,300 @@
+[2023-12-11 07:03:53] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:24] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:25] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:25] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:25] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:25] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 07:06:26] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-11 11:14:33] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-12 02:59:56] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-12 03:58:21] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-12 04:11:16] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
+[2023-12-12 09:26:52] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php:223)
+[stacktrace]
+#0 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(150): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(85): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/ArgvInput.php(74): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Command/Command.php(285): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(1081): Illuminate\\Console\\Command->run()
+#7 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#10 /home/salvador/Desktop/DAW/dawServidor/tiendalaravel2324/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
