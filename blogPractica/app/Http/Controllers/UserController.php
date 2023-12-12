@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categorias = Categoria::all();
-        return view('categorias.index', compact('categorias'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -35,15 +35,15 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show(User $user)
     {
-        return view('categorias.show', compact('categoria'));
+        return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categoria $categoria)
+    public function edit(User $user)
     {
         //
     }
@@ -51,7 +51,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, User $comentario)
     {
         //
     }
@@ -59,7 +59,7 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(User $user)
     {
         //
     }

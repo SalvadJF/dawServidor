@@ -12,7 +12,8 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
+        $comentarios = Comentario::all();
+        return view('comentarios.index', compact('comentarios'));
     }
 
     /**
@@ -36,7 +37,7 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        //
+        return view('comentarios.show', compact('comentario'));
     }
 
     /**
