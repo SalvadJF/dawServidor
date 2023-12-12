@@ -1,6 +1,12 @@
 <?php
 
 // Tabla Peliculas
+
+public function proyecciones(): HasMany
+{
+    return $this->hasMany(Proyeccion::class);
+}
+
     public function up()
     {
         Schema::create('peliculas', function (Blueprint $table) {
@@ -19,6 +25,13 @@
 
 // Tabla Salas
 
+
+    public function proyecciones(): HasMany
+    {
+        return $this->hasMany(Proyeccion::class);
+    }
+}
+
     public function up()
     {
         Schema::create('salas', function (Blueprint $table) {
@@ -36,6 +49,21 @@
 
 
 // Tabla Proyecciones
+// Para que el nombre pueda adaptarse correctamente debemos hacerlo por separado
+php artisan make:migration create_proyecciones_table
+// Y el modelo
+php artisan make:model Proyeccion
+
+
+public function pelicula(): BelongsTo
+{
+    return $this->belongsTo(Pelicula::class);
+}
+
+public function sala(): BelongsTo
+{
+    return $this->belongsTo(Sala::class);
+}
 
     public function up()
     {
@@ -58,6 +86,11 @@
 
 // Tabla Entradas
 
+public function proyeccion(): BelongsTo
+{
+    return $this->belongsTo(Proyeccion::class);
+}
+
     public function up()
     {
         Schema::create('entradas', function (Blueprint $table) {
@@ -65,7 +98,7 @@
             $table->unsignedBigInteger('proyeccion_id');
             $table->timestamps();
 
-            $table->foreign('proyeccion_id')->references('id')->on('proyecciones')->onDelete('cascade');
+            $table->foreign('proyeccion_id')->references('id')->on('proyecciones');
         });
     }
 

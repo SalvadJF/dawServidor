@@ -10,6 +10,8 @@ class Iva extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['tipo', 'por'];
+
     public function articulos(): HasMany
     {
         return $this->hasMany(Articulo::class);

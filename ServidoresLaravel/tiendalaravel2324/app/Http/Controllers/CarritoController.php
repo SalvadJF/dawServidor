@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Generico\Carrito;
 use App\Models\Articulo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class CarritoController extends Controller
 {

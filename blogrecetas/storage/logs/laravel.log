@@ -1,9 +1,0 @@
-[2023-12-12 11:07:48] production.ERROR: There are no commands defined in the "breeze" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"breeze\" namespace. at /home/salvador/Desktop/DAW/dawServidor/blogrecetas/vendor/symfony/console/Application.php:669)
-[stacktrace]
-#0 /home/salvador/Desktop/DAW/dawServidor/blogrecetas/vendor/symfony/console/Application.php(720): Symfony\\Component\\Console\\Application->findNamespace()
-#1 /home/salvador/Desktop/DAW/dawServidor/blogrecetas/vendor/symfony/console/Application.php(266): Symfony\\Component\\Console\\Application->find()
-#2 /home/salvador/Desktop/DAW/dawServidor/blogrecetas/vendor/symfony/console/Application.php(175): Symfony\\Component\\Console\\Application->doRun()
-#3 /home/salvador/Desktop/DAW/dawServidor/blogrecetas/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
-#4 /home/salvador/Desktop/DAW/dawServidor/blogrecetas/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
-#5 {main}
-"} 

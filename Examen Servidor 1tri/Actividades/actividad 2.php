@@ -28,19 +28,6 @@ class PeliculaController extends Controller
     }
 
     /**
-     * Busca películas.
-     *
-     */
-    public function search(Request $request)
-    {
-        $titulo = $request->input('titulo');
-
-        $peliculas = Pelicula::where('titulo', 'like', '%' . $titulo . '%')->get();
-
-        return view('peliculas.index', compact('peliculas'));
-    }
-
-    /**
      * Actualiza una película.
      *
      */
