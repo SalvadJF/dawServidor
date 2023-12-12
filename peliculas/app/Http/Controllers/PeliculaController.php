@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seccion;
+use App\Models\Pelicula;
 use Illuminate\Http\Request;
 
-class SeccionController extends Controller
+class PeliculaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $secciones = Seccion::all();
-        return view("secciones.index", [
-            'secciones' => $secciones
+        $peliculas = Pelicula::all();
+
+        return view('peliculas.index', [
+            'peliculas' => $peliculas
         ]);
     }
 
@@ -37,7 +38,7 @@ class SeccionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Seccion $seccion)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +46,7 @@ class SeccionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Seccion $seccion)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +54,7 @@ class SeccionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Seccion $seccion)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +62,7 @@ class SeccionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Seccion $seccion)
+    public function destroy(string $id)
     {
         //
     }

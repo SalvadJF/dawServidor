@@ -1,12 +1,10 @@
 <?php
 
+use App\Http\Controllers\DescriptionController;
+use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Pelicula;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LibroController;
-use App\Http\Controllers\EstanteriaController;
-use App\Http\Controllers\AutorController;
-use App\Http\Controllers\SeccionController;
-use App\Models\Libro;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +18,9 @@ use App\Models\Libro;
 */
 
 Route::get('/', function () {
-    $libros = Libro::all();
-    return view('principal', [
-        'libros' => $libros
+    $peliculas = Pelicula::all();
+    return view('principal',[
+        'peliculas' => $peliculas
     ]);
 });
 
@@ -36,21 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Rutas de Recursos
-Route::resource('libros', LibroController::class);
-Route::resource('estanterias', EstanteriaController::class);
-Route::resource('autores', AutorController::class);
-Route::resource('secciones', SeccionController::class);
+Route::resource('peliculas', PeliculaController::class);
 
-// Rutas de web
-Route::get('/estanterias', [EstanteriaController::class, 'index']);
+Route::resource('descriptions', DescriptionController::class);
 
-Route::get('/libros', [LibroController::class, 'index']);
-Route::get('/libros/{libro}', [LibroController::class,'show']);
-
-Route::get('/autores', [AutorController::class, 'index']);
-
-Route::get('/secciones', [SeccionController::class, 'index']);
-
+Route::get('descriptions/{pelicula}/create', [DescriptionController::class, 'create'])
+->name('descriptions.create')->middleware('auth');
 
 require __DIR__.'/auth.php';

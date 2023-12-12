@@ -29,7 +29,7 @@ class EstanteriaController extends Controller
      */
     public function store(Request $request)
     {
-        return view("estanterias.show", compact("estanteria"));
+        //
     }
 
     /**
