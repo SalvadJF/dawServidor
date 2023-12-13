@@ -34,7 +34,7 @@ class PeliculaController extends Controller
     {
         $pelicula = new Pelicula();
         $pelicula->titulo = $request->input('titulo');
-        if ($pelicula->hasEntradas()) {
+        if ($pelicula->has(Entradas) {
             return redirect()->back()->with('error', 'La pelicula ya existe');
         } else {
         $pelicula->save();

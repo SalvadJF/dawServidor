@@ -30,7 +30,7 @@ public function proyecciones(): HasMany
     {
         return $this->hasMany(Proyeccion::class);
     }
-}
+
 
     public function up()
     {
@@ -53,7 +53,7 @@ public function proyecciones(): HasMany
 php artisan make:migration create_proyecciones_table
 // Y el modelo
 php artisan make:model Proyeccion
-
+// Tambien simplemente modificar el nombre de la migracion al crearla
 
 public function pelicula(): BelongsTo
 {
@@ -64,6 +64,11 @@ public function sala(): BelongsTo
 {
     return $this->belongsTo(Sala::class);
 }
+
+public function entradas(): HasMany
+    {
+        return $this->hasMany(Entrada::class);
+    }
 
     public function up()
     {
@@ -99,6 +104,8 @@ public function proyeccion(): BelongsTo
             $table->timestamps();
 
             $table->foreign('proyeccion_id')->references('id')->on('proyecciones');
+            // tambien seria  valido
+            // $table->foreignId('proyeccion_id)->constrained('proyecciones')
         });
     }
 

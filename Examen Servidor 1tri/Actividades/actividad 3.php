@@ -1,27 +1,18 @@
 <?php 
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 // Creacion de la ruta
 
 Route::get('/peliculas/{id}', [PeliculaController::class, 'show']);
 
-// Calculo de entradas
-$entradas = Entrada::where('pelicula_id', $pelicula->id)->count();
-
 // Show modificado
 
 
-public function show($id)
+public function show(Pelicula $pelicula)
 {
     $pelicula = Pelicula::find($id);
 
-    $entradas = DB::table('entradas')
-    ->whereIn('proyeccion_id', DB::table('proyecciones')
-        ->where('pelicula_id', $pelicula->id)
-        ->select('id')
-        ->get()
-        ->pluck('id')
-    )
-    ->count();
+    $entradas = $pelicula->entrada->count();
 
     return view('peliculas.show', [
         'pelicula' => $pelicula,
@@ -29,4 +20,27 @@ public function show($id)
     ]);
 }
 
+// Otra forma
 
+
+
+
+// Usando Has many Through
+
+Modelo Proyeccion
+
+protected $table = 'proyecciones';
+// Con esto enlazamos el modelo con la tabla, util cuando el nombre entenga problemas con los metodos de Laravel
+
+Modelo Pelicula 
+
+public function entradas()
+{
+    // usando las relaciones
+    return $this->through('proyecciones')->has('entradas')
+    //  Usando las Clases return $this->hasManyThrough(Entrada::class, Proyeccion::class)
+
+}
+
+// Esto devolveria la cantidad
+$pelicula->entrada->count();

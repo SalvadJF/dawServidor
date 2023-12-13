@@ -52,3 +52,7 @@ class PeliculaController extends Controller
         return redirect()->route('peliculas.index');
     }
 }
+
+/* 
+*   Para la creacion de las vistas bastara con recoger las vistas creadas en la tiendalaravel y editarlas para adaptarla
+*/
