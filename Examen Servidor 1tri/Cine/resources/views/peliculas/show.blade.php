@@ -1,19 +1,27 @@
-<div class="max-w-4xl mx-auto p-8 m-8 bg-white shadow-lg rounded-lg">
-    <h1 class="text-2xl font-bold">Pelicula nº {{ $pelicula->id }}</h1>
-    <h2 class="text-xl mb-4">Fecha: {{ $pelicula->created_at }}</h2>
-    <table class="min-w-full table-auto">
-        <thead class="bg-gray-100">
-            <tr>
-                <th class="px-4 py-2">Titulo</th>
-                <th class="px-4 py-2">Entradas Vendidas</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr class="border-b">
-                    <td class="px-4 py-2">{{ $pelicula->titulo }}</td>
-                    <td class="px-4 py-2">{{ $entradas }}</td>
-                </tr>
+<x-app-layout>
+    <div class="w-1/2 mx-auto">
+        <!-- Título -->
+        <div>
+            <x-input-label for="titulo" :value="'Título de la película'" />
+            <x-text-input id="titulo" class="block mt-1 w-full"
+                type="text" name="titulo" :value="old('titulo', $pelicula->titulo)" required
+                autofocus autocomplete="titulo" disabled />
+        </div>
 
-        </tbody>
-    </table>
-</div>
+        <!-- Título -->
+        <div class="mt-4">
+            <x-input-label for="total" :value="'Total de entradas'" />
+            <x-text-input id="total" class="block mt-1 w-full"
+                type="text" name="total" :value="old('total', $total)" required
+                autofocus autocomplete="total" disabled />
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <a href="{{ route('peliculas.index') }}">
+                <x-secondary-button class="ms-4">
+                    Volver
+                </x-primary-button>
+            </a>
+        </div>
+    </div>
+</x-app-layout>

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PeliculaController extends Controller
 {
@@ -14,9 +12,9 @@ class PeliculaController extends Controller
      */
     public function index()
     {
-        $peliculas = Pelicula::all();
-
-        return view('peliculas.index', compact('peliculas'));
+        return view('peliculas.index', [
+            'peliculas' => Pelicula::all(),
+        ]);
     }
 
     /**
@@ -32,82 +30,71 @@ class PeliculaController extends Controller
      */
     public function store(Request $request)
     {
-        $pelicula = new Pelicula();
-        $pelicula->titulo = $request->input('titulo');
-        if ($pelicula->has(Entradas) {
-            return redirect()->back()->with('error', 'La pelicula ya existe');
-        } else {
-        $pelicula->save();
-        session()->flash('success', 'La pelicula se ha creado correctamente');
-        }
+        $validated = $request->validate([
+            'titulo' => 'required|max:255',
+        ]);
+
+        $Pelicula = new Pelicula();
+        $Pelicula->titulo = $request->input('titulo');
+        $Pelicula->save();
+        session()->flash('success', 'La película se ha creado correctamente.');
         return redirect()->route('peliculas.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Pelicula $pelicula)
     {
-        $pelicula = Pelicula::find($id);
-
-        $entradas = DB::table('entradas')
-            ->whereIn('proyeccion_id', DB::table('proyecciones')
-              ->where('pelicula_id', $pelicula->id)
-              ->whereNotNull('id')
-              ->select('id')
-              ->get()
-              ->pluck('id')
-            )
-            ->count();
-
         return view('peliculas.show', [
             'pelicula' => $pelicula,
-            'entradas' => $entradas,
+            'total' => $pelicula->cantidadEntradas(),
         ]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, int $id)
+    public function edit(Pelicula $pelicula)
     {
-        $pelicula = Pelicula::find($id);
-        $pelicula->titulo = $request->input('titulo');
-        $pelicula->save();
-
-        return redirect()->route('peliculas.index');
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede cambiar la película porque tiene entradas.');
+            return redirect()->route('peliculas.index');
+        } else {
+            return view('peliculas.edit', [
+                'pelicula' => $pelicula,
+            ]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, Pelicula $pelicula)
     {
-        $pelicula = Pelicula::find($id);
-        $pelicula->titulo = $request->input('titulo');
-        if ($pelicula->hasEntrada()) {
-            return redirect()->back()->with('error', 'No se puede modificar una película para la que se han vendido entradas');
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede cambiar la película porque tiene entradas.');
         } else {
+            $validated = $request->validate([
+                'titulo' => 'required|max:255',
+            ]);
+
+            $pelicula->titulo = $request->input('titulo');
             $pelicula->save();
-            session()->flash('success', 'La pelicula se ha actualizado correctamente');
         }
-
-
         return redirect()->route('peliculas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(Pelicula $pelicula)
     {
-        $pelicula = Pelicula::find($id);
-        if ($pelicula->hasEntrada()) {
-            return redirect()->back()->with('error', 'No se puede eliminar una película para la que se han vendido entradas');
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede eliminar la película porque tiene entradas.');
         } else {
-        $pelicula->delete();
-        session()->flash('success', 'La pelicula se ha borrado correctamente');
+            $pelicula->delete();
+            session()->flash('success', 'La película se ha eliminado correctamente.');
         }
         return redirect()->route('peliculas.index');
     }

@@ -1,25 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de películas</title>
-</head>
-<body>
-    <h1>Listado de películas</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Título</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($peliculas as $pelicula)
+<x-app-layout>
+    <div class="relative overflow-x-auto w-3/4 mx-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <td>{{ $pelicula->titulo }}</td>
+                    <th scope="col" class="px-6 py-3">
+                        Título
+                    </th>
+                    <th scope="col" class="px-6 py-3" colspan="2">
+                        Acción
+                    </th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+            </thead>
+            <tbody>
+                @foreach ($peliculas as $pelicula)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <a href="{{ route('peliculas.show', ['pelicula' => $pelicula]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                {{ $pelicula->titulo }}
+                            </a>
+                        </th>
+                        <td class="px-6 py-4">
+                            <a href="{{ route('peliculas.edit', ['pelicula' => $pelicula]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                <x-primary-button>
+                                    Editar
+                                </x-primary-button>
+                            </a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <form action="{{ route('peliculas.destroy', ['pelicula' => $pelicula]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <x-primary-button class="bg-red-500">
+                                    Borrar
+                                </x-primary-button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <form action="{{ route('peliculas.create') }}" class="flex justify-center mt-4 mb-4">
+            <x-primary-button class="bg-green-500">Insertar una nueva película</x-primary-button>
+        </form>
+    </div>
+</x-app-layout>

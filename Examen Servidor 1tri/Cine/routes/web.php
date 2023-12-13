@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PeliculaController::class, 'index'])->name('principal');
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Route::resource('peliculas', PeliculaController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,14 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/peliculas', [PeliculaController::class, 'index'])->name('peliculas.index');
-Route::get('/peliculas/crear', [PeliculaController::class, 'create'])->name('peliculas.create');
-Route::post('/peliculas', [PeliculaController::class, 'store'])->name('peliculas.store');
-Route::get('/peliculas/{id}', [PeliculaController::class, 'show'])->name('peliculas.show');
-Route::get('/peliculas/{id}/editar', [PeliculaController::class, 'edit'])->name('peliculas.edit');
-Route::put('/peliculas/{id}', [PeliculaController::class, 'update'])->name('peliculas.update');
-Route::delete('/peliculas/{id}', [PeliculaController::class, 'destroy'])->name('peliculas.destroy');
-
 
 require __DIR__.'/auth.php';
