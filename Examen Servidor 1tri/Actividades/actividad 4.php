@@ -6,7 +6,7 @@ public function update(Request $request, int $id)
 {
     $pelicula = Pelicula::find($id);
     $pelicula->titulo = $request->input('titulo');
-    if ($pelicula->hasEntradas()) {
+    if (isset($pelicula->has(entrada))) {
         return redirect()->back()->with('error', 'No se puede modificar una película para la que se han vendido entradas');
     } else {
         $pelicula->save();
@@ -23,7 +23,7 @@ public function store(Request $request)
 {
     $pelicula = new Pelicula();
     $pelicula->titulo = $request->input('titulo');
-    if ($pelicula->hasEntradas()) {
+    if (isset($pelicula->has(entrada))) {
         return redirect()->back()->with('error', 'La pelicula ya existe');
     } else {
     $pelicula->save();
@@ -37,7 +37,7 @@ public function store(Request $request)
 public function destroy(int $id)
 {
     $pelicula = Pelicula::find($id);
-    if ($pelicula->hasEntradas()) {
+    if (isset($pelicula->has(entrada))) {
         return redirect()->back()->with('error', 'No se puede eliminar una película para la que se han vendido entradas');
     } else {
     $pelicula->delete();
@@ -45,3 +45,4 @@ public function destroy(int $id)
     }
     return redirect()->route('peliculas.index');
 }
+
