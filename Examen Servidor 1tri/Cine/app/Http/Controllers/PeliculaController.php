@@ -51,19 +51,21 @@ class PeliculaController extends Controller
         $pelicula = Pelicula::find($id);
 
         $entradas = DB::table('entradas')
-        ->whereIn('proyeccion_id', DB::table('proyecciones')
-          ->where('pelicula_id', $pelicula->id)
-          ->select('id')
-          ->get()
-          ->pluck('id')
-        )
-        ->count();
+            ->whereIn('proyeccion_id', DB::table('proyecciones')
+              ->where('pelicula_id', $pelicula->id)
+              ->whereNotNull('id')
+              ->select('id')
+              ->get()
+              ->pluck('id')
+            )
+            ->count();
 
         return view('peliculas.show', [
             'pelicula' => $pelicula,
             'entradas' => $entradas,
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
