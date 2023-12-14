@@ -2,12 +2,15 @@
 
 // Modificacion Update
 
-public function update(Request $request, int $id)
+public function update(Request $request, Pelicula $pelicula)
 {
-    $pelicula = Pelicula::find($id);
+    $validated = $request->validate([
+        'titulo' => 'required|max:255',
+    ]);
+    
     $pelicula->titulo = $request->input('titulo');
-    if (isset($pelicula->has(entrada))) {
-        return redirect()->back()->with('error', 'No se puede modificar una película para la que se han vendido entradas');
+    if (isset($pelicula->has('entradas'))) {
+        session()->flash('error', 'No se puede modificar una película para la que se han vendido entradas');
     } else {
         $pelicula->save();
         session()->flash('success', 'La pelicula se ha actualizado correctamente');
@@ -21,10 +24,14 @@ public function update(Request $request, int $id)
 
 public function store(Request $request)
 {
+    $validated = $request->validate([
+        'titulo' => 'required|max:255',
+    ]);
+
     $pelicula = new Pelicula();
     $pelicula->titulo = $request->input('titulo');
-    if (isset($pelicula->has(entrada))) {
-        return redirect()->back()->with('error', 'La pelicula ya existe');
+    if (isset($pelicula->has('entradas'))) {
+        session()->flash('error', 'La pelicula ya existe');
     } else {
     $pelicula->save();
     session()->flash('success', 'La pelicula se ha creado correctamente');
@@ -34,11 +41,10 @@ public function store(Request $request)
 
 // modificacion Destroy
 
-public function destroy(int $id)
+public function destroy(Pelicula $pelicula)
 {
-    $pelicula = Pelicula::find($id);
-    if (isset($pelicula->has(entrada))) {
-        return redirect()->back()->with('error', 'No se puede eliminar una película para la que se han vendido entradas');
+    if (isset($pelicula->has('entradas'))) {
+        session()->flash('error', 'No se puede eliminar una película para la que se han vendido entradas');
     } else {
     $pelicula->delete();
     session()->flash('success', 'La pelicula se ha borrado correctamente');
