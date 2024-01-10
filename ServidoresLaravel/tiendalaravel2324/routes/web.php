@@ -10,8 +10,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishListController;
 use App\Models\Articulo;
+use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,5 +78,19 @@ Route::get('/comprar', [FacturaController::class, 'create'])->middleware('auth')
 Route::post('/realizar_compra', [FacturaController::class, 'realizarCompra'])->middleware('auth')->name('realizar_compra');
 
 Route::get('/facturas/{factura}/pdf', [FacturaController::class, 'imprimir'])->name('facturas.imprimir');
+
+Route::resource('facturas', FacturaController::class);
+
+Route::get('facturas', function () {
+    $facturas = Auth::user()->facturas()
+        ->selectRaw('facturas.id, facturas.user_id, facturas.created_at, sum(cantidad * precio) as total')
+        ->join('articulo_factura', 'facturas.id', '=', 'articulo_factura.factura_id')
+        ->join('articulos', 'articulos.id', '=', 'articulo_factura.articulo_id')
+        ->groupBy('facturas.id')
+        ->get();
+    return view('facturas', [
+        'facturas' => $facturas,
+    ]);
+})->middleware('auth')->name('facturas.index');
 
 require __DIR__ . '/auth.php';

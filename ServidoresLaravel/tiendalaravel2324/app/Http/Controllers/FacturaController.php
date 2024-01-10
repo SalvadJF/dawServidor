@@ -14,6 +14,11 @@ use Mpdf\Mpdf;
 
 class FacturaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Factura::class, 'factura');
+    }
     /**
      * Display a listing of the resource.
      */

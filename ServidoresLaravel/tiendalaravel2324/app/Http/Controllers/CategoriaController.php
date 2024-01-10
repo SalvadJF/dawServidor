@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriaRequest;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoriaController extends Controller
 {
+    /**
+     * Create the controller instance.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Categoria::class, 'categoria');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categorias = Categoria::all();
         return view('categorias.index', [
-            'categorias' => $categorias,
+            'categorias' => Categoria::all(),
         ]);
     }
 
@@ -29,14 +38,15 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
+        // $this->authorize('update');
 
-        $validated = $this->valida($request);
-        if ($validated) {
-            session()->flash('exito','La categoría se ha creado correctamente');
-        }
-        Categoria::create($validated);
+        $validated = $request->validated();
+        $categoria = new Categoria();
+        $categoria->nombre = $validated['nombre'];
+        $categoria->save();
+        session()->flash('success', 'La categoría se ha creado correctamente.');
         return redirect()->route('categorias.index');
     }
 
@@ -45,7 +55,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        return 'Soy el show';
+        return 'Hola, soy el Show';
     }
 
     /**
@@ -54,17 +64,20 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         return view('categorias.edit', [
-            'categoria' => $categoria
+            'categoria' => $categoria,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(CategoriaRequest $request, Categoria $categoria)
     {
-        $validated = $this->valida($request);
-        $categoria->update($validated);
+        // $this->authorize('update', $categoria);
+
+        $validated = $request->validated();
+        $categoria->nombre = $validated['nombre'];
+        $categoria->save();
         return redirect()->route('categorias.index');
     }
 
@@ -76,15 +89,8 @@ class CategoriaController extends Controller
         if ($categoria->articulos->isEmpty()) {
             $categoria->delete();
         } else {
-            session()->flash('error', 'La categoría tiene artículos');
+            session()->flash('error', 'La categoría tiene artículos.');
         }
         return redirect()->route('categorias.index');
-    }
-
-    private function valida(REQUEST $request)
-    {
-        return $request->validate([
-            'nombre' => 'required|string|max:40',
-        ]);
     }
 }
