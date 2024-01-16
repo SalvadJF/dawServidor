@@ -32,6 +32,13 @@
                         <?php echo e($articulo->categoria->nombre); ?>
 
                     </p>
+                    <?php if($articulo->existeImagen()): ?>
+                        <p>
+                        <img class="w-5/6 m-auto mb-3" src="<?php echo e(asset($articulo->imagen_url)); ?>" />
+                    </p>
+                    <?php endif; ?>
+
+
                     <a href="<?php echo e(route('carrito.insertar', $articulo)); ?>" class="inline-flex items-center py-2 px-3.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Añadir al carrito
                         <svg aria-hidden="true" class="ml-3 -mr-1 w-4 h-4"

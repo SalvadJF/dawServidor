@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="relative overflow-x-auto w-auto mx-8 mshadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
@@ -29,7 +29,7 @@
                             Categoría {{ order_dir_arrow($order == 'nombre', $order_dir) }}
                         </a>
                     </th>
-                    <th scope="col" class="px-6 py-3" colspan="2">
+                    <th scope="col" class="px-6 py-3 text-center" colspan="3">
                         Acción
                     </th>
                 </tr>
@@ -39,11 +39,13 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             @if ($articulo->existeImagen())
-                                <img src="{{ asset($articulo->imagen_url) }}" />
+                                <img class="m-auto" src="{{ asset($articulo->imagen_url) }}" />
                             @endif
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ truncar($articulo->denominacion) }}
+                            <a href="{{ route('articulos.show', ['articulo' => $articulo]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                {{ truncar($articulo->denominacion) }}
+                            </a>
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ dinero($articulo->precio) }}

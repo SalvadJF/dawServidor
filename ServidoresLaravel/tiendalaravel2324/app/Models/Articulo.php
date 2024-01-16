@@ -12,6 +12,11 @@ class Articulo extends Model
 {
     use HasFactory;
 
+    private function imagen_url_relativa()
+    {
+        return '/uploads/' . $this->imagen;
+    }
+
     protected $fillable =['denominacion', 'precio', 'categoria_id', 'iva_id', 'descripcion', 'stock'];
 
     public function categoria(): BelongsTo
