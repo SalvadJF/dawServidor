@@ -7,17 +7,21 @@ function dinero($s)
 
 function truncar($s, $long = 20)
 {
-    return mb_substr($s, 0, $long);
+    if (mb_strlen($s) > $long) {
+        return mb_substr($s, 0, $long) . '...';
+    }
+
+    return $s;
 }
 
-function flechas($order, $direccion)
+function order_dir_arrow($order, $order_dir)
 {
-    return $order == false ? '' : ($direccion == 'desc' ? '↑' : '↓');
+    return $order == false ? '' : ($order_dir == 'desc' ? '↑' : '↓');
 }
 
-function order_direccion($order, $direccion)
+function order_dir($order, $order_dir)
 {
-    return $order == false ? 'asc' : ($direccion == 'asc' ? 'desc' : 'asc');
+    return $order == false ? 'asc' : ($order_dir == 'asc' ? 'desc' : 'asc');
 }
 
 function carrito()

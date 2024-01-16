@@ -56,8 +56,8 @@ class User extends Authenticatable
         return $this->hasMany(Factura::class);
     }
 
-    public function user(): BelongsTo
+    public function es_admin(): bool
     {
-        return $this->belongsTo(Rol::class);
+        return $this->is_admin;
     }
 }

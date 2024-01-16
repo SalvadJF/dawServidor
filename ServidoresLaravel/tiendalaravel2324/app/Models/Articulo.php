@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Articulo extends Model
 {
@@ -36,5 +37,20 @@ class Articulo extends Model
     public function facturas(): BelongsToMany
     {
         return $this->belongsToMany(Factura::class)->withPivot('cantidad');
+    }
+
+    public function getImagenAttribute()
+    {
+        return $this->id . '.png';
+    }
+
+    public function getImagenUrlAttribute()
+    {
+        return Storage::url(mb_substr($this->imagen_url_relativa(), 1));
+    }
+
+    public function existeImagen()
+    {
+        return Storage::disk('public')->exists($this->imagen_url_relativa());
     }
 }
