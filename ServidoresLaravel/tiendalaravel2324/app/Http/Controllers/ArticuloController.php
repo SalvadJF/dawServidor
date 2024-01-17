@@ -25,7 +25,7 @@ class ArticuloController extends Controller
             ->leftJoin('ivas', 'articulos.iva_id', '=', 'ivas.id')
             ->orderBy($order, $order_dir)
             ->orderBy('denominacion')
-            ->paginate(3);
+            ->paginate(10);
         return view('articulos.index', [
             'articulos' => $articulos,
             'order' => $order,
@@ -101,7 +101,8 @@ class ArticuloController extends Controller
             'denominacion' => 'required|max:255',
             'precio' => 'required|numeric|decimal:2|between:-9999.99,9999.99',
             'categoria_id' => 'required|integer|exists:categorias,id',
-            'iva_id' => 'required|integer|exists:ivas,id'
+            'iva_id' => 'required|integer|exists:ivas,id',
+            'descripcion' => 'required|string|max:255'
         ]);
     }
 
@@ -114,8 +115,9 @@ class ArticuloController extends Controller
 
     public function guardar_imagen(Articulo $articulo, Request $request)
     {
+        $mime = Articulo::MIME_IMAGEN;
         $request->validate([
-            'imagen' => 'required|mimes:png|max:200',
+            'imagen' => "required|mimes:$mime|max:200",
         ]);
 
         $imagen = $request->file('imagen');

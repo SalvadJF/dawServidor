@@ -12,9 +12,16 @@ class Articulo extends Model
 {
     use HasFactory;
 
+    const MIME_IMAGEN = 'png';
+
     private function imagen_url_relativa()
     {
         return '/uploads/' . $this->imagen;
+    }
+
+    private function mini_url_relativa()
+    {
+        return '/uploads/' . $this->mini;
     }
 
     protected $fillable =['denominacion', 'precio', 'categoria_id', 'iva_id', 'descripcion', 'stock'];
@@ -46,7 +53,12 @@ class Articulo extends Model
 
     public function getImagenAttribute()
     {
-        return $this->id . '.png';
+        return $this->id . '.' . self::MIME_IMAGEN;
+    }
+
+    public function getMiniAttribute()
+    {
+        return $this->id . '_mini.' . self::MIME_IMAGEN;
     }
 
     public function getImagenUrlAttribute()
@@ -54,8 +66,19 @@ class Articulo extends Model
         return Storage::url(mb_substr($this->imagen_url_relativa(), 1));
     }
 
+    public function getMiniUrlAttribute()
+    {
+        return Storage::url(mb_substr($this->mini_url_relativa(), 1));
+    }
+
     public function existeImagen()
     {
         return Storage::disk('public')->exists($this->imagen_url_relativa());
     }
+
+    public function existeMini()
+    {
+        return Storage::disk('public')->exists($this->mini_url_relativa());
+    }
+
 }

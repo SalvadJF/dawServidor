@@ -12,18 +12,14 @@
             class="p-2 grid grid-cols-3 gap-4 justify-center justify-items-center">
             <?php $__currentLoopData = $articulos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $articulo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div
-                    class="p-6 max-w-xs min-w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
+                    class="p-6 max-w-xs min-w-full bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 text-center">
+                    <a href="<?php echo e(route('articulos.show', ['articulo' => $articulo])); ?>">
                         <h5
                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <?php echo e($articulo->denominacion); ?>
 
                         </h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        <?php echo e($articulo->denominacion); ?>
-
-                    </p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         Precio: <?php echo e(dinero($articulo->precio_ii)); ?>
 
@@ -32,9 +28,17 @@
                         <?php echo e($articulo->categoria->nombre); ?>
 
                     </p>
-                    <?php if($articulo->existeImagen()): ?>
+                    <?php if($articulo->existeMini()): ?>
                         <p>
-                        <img class="w-5/6 m-auto mb-3" src="<?php echo e(asset($articulo->imagen_url)); ?>" />
+                        <a href="<?php echo e(route('articulos.show', ['articulo' => $articulo])); ?>">
+                            <img class="w-5/6 m-auto mb-3" src="<?php echo e(asset($articulo->mini_url)); ?>" />
+                        </a>
+                    </p>
+                    <?php elseif($articulo->existeImagen()): ?>
+                        <p>
+                        <a href="<?php echo e(route('articulos.show', ['articulo' => $articulo])); ?>">
+                            <img class="w-5/6 m-auto mb-3" src="<?php echo e(asset($articulo->imagen_url)); ?>" />
+                        </a>
                     </p>
                     <?php endif; ?>
 

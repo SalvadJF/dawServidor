@@ -7,19 +7,24 @@
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-    <div class="relative overflow-x-auto w-auto mx-8 mshadow-md sm:rounded-lg bg-slate-300">
+    <div class="block items-center justify-center w-2/4 p-6 m-auto bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700  content-center">
         <?php if($articulo->existeImagen()): ?>
             <img class="flex-1 w-1/10 m-auto mt-2 rounded-xl" src="<?php echo e(asset($articulo->imagen_url)); ?>" />
         <?php endif; ?>
 
         <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Nombre :</i> <?php echo e(truncar($articulo->denominacion)); ?></p>
 
+        <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Descripcion :</i> <?php echo e(truncar($articulo->descripcion)); ?></p>
+
+        <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Categoria :</i> <?php echo e(truncar($articulo->categoria->nombre)); ?></p>
 
         <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Precio :</i> <?php echo e(dinero($articulo->precio)); ?></p>
 
         <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">IVA :</i> <?php echo e($articulo->iva->por . ' %'); ?></p>
 
         <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Total :</i> <?php echo e(dinero($articulo->precio_ii)); ?></p>
+
+        <p class="font-black text-5xl text-center m-auto pt-3"><i class="text-red-500	color: rgb(239 68 68);">Stock :</i> <?php echo e($articulo->stock); ?></p>
 
 
         <a href="<?php echo e(route('articulos.cambiar_imagen', ['articulo' => $articulo])); ?>"
@@ -34,6 +39,25 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
                 Cambiar imagen
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
+<?php $component = $__componentOriginal71c6471fa76ce19017edc287b6f4508c; ?>
+<?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
+<?php endif; ?>
+        </a>
+        <a href="<?php echo e(route('principal')); ?>"
+            class="m-auto font-medium text-blue-600 dark:text-blue-500 hover:underline flex justify-center items-center mt-2 mb-2">
+            <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.primary-button','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('primary-button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+                Volver
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal71c6471fa76ce19017edc287b6f4508c)): ?>
