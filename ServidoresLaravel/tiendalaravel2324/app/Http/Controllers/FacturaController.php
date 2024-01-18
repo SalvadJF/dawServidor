@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PedidoGenerado;
 use App\Models\Factura;
 use App\Generico\Carrito;
 use App\Models\Articulo;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Mpdf\Mpdf;
 
 class FacturaController extends Controller
@@ -117,6 +119,7 @@ class FacturaController extends Controller
             }
         }
         DB::commit();
+        Mail::to($request->user())->send(new PedidoGenerado($factura));
         session()->flash('exito', 'La factura se ha generado correctamente');
         session()->forget('carrito');
         return redirect()->route('principal');

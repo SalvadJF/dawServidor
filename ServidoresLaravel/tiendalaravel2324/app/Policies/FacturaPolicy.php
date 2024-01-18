@@ -21,8 +21,7 @@ class FacturaPolicy
      */
     public function view(User $user, Factura $factura): bool
     {
-        return $user->es_admin()
-            || $user->id == $factura->user_id;
+        return true;
     }
 
     /**

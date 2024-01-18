@@ -13,4 +13,11 @@ class Alumno extends Model
 
         return $this->hasMany(Nota::class);
     }
+
+    public function notas_por_criterio(){
+        return $this->notas()
+            ->selectRaw('alumno_id, ccee_id, max(nota) AS nota')
+            ->groupBy(['alumno_id', 'ccee_id'])
+            ->get();
+    }
 }
