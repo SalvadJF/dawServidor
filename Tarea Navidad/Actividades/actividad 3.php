@@ -3,10 +3,24 @@
 # En alumnos/criterios/id (siendo id el identificador del alumno), mostrar los CE
 # calificados para ese alumno, y la calificación que ha obtenido ese alumno en cada uno de esos CE
 
+# En el modelo Alumnos
+
+public function notas_por_criterios()
+    {
+        return $this->notas()
+            ->select(DB::raw('alumno_id, ccee_id, max(nota) AS nota'))
+            ->groupBy(['alumno_id', 'ccee_id'])
+            ->get();
+    }
+
+# En web.php
+
 Route::resource('alumnos', AlumnoController::class);
 Route::get('/alumnos/criterios/{alumno}', [AlumnoController::class, 'criterios'])
     ->name('alumnos.criterios');
 
+# La vista criterios
+    
     <x-app-layout>
     <div class="relative overflow-x-auto w-3/4 mx-auto shadow-md sm:rounded-lg">
         <div class="mt-4 mb-4">
