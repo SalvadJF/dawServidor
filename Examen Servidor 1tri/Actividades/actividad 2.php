@@ -7,51 +7,94 @@ class PeliculaController extends Controller
      * Crea una nueva película.
      *
      */
-    public function store(Request $request)
-    {
-        $pelicula = new Pelicula();
-        $pelicula->titulo = $request->input('titulo');
-        $pelicula->save();
-
-        return redirect()->route('peliculas.index');
-    }
-
-    /**
-     * Lista todas las películas.
-     *
-     */
     public function index()
     {
-        $peliculas = Pelicula::all();
-
-        return view('peliculas.index', compact('peliculas'));
+        return view('peliculas.index', [
+            'peliculas' => Pelicula::all(),
+        ]);
     }
 
     /**
-     * Actualiza una película.
-     *
+     * Show the form for creating a new resource.
      */
-    public function update(Request $request, int $id)
+    public function create()
     {
-        $pelicula = Pelicula::find($id);
-        $pelicula->titulo = $request->input('titulo');
-        $pelicula->save();
+        return view('peliculas.create');
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'titulo' => 'required|max:255',
+        ]);
+
+        $Pelicula = new Pelicula();
+        $Pelicula->titulo = $request->input('titulo');
+        $Pelicula->save();
+        session()->flash('success', 'La película se ha creado correctamente.');
         return redirect()->route('peliculas.index');
     }
 
     /**
-     * Elimina una película.
-     *
+     * Display the specified resource.
      */
-    public function destroy(int $id)
+    public function show(Pelicula $pelicula)
     {
-        $pelicula = Pelicula::find($id);
-        $pelicula->delete();
+        return view('peliculas.show', [
+            'pelicula' => $pelicula,
+            'total' => $pelicula->cantidadEntradas(),
+        ]);
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Pelicula $pelicula)
+    {
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede cambiar la película porque tiene entradas.');
+            return redirect()->route('peliculas.index');
+        } else {
+            return view('peliculas.edit', [
+                'pelicula' => $pelicula,
+            ]);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Pelicula $pelicula)
+    {
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede cambiar la película porque tiene entradas.');
+        } else {
+            $validated = $request->validate([
+                'titulo' => 'required|max:255',
+            ]);
+
+            $pelicula->titulo = $request->input('titulo');
+            $pelicula->save();
+        }
         return redirect()->route('peliculas.index');
     }
-}
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Pelicula $pelicula)
+    {
+        if ($pelicula->cantidadEntradas() > 0) {
+            session()->flash('error', 'No se puede eliminar la película porque tiene entradas.');
+        } else {
+            $pelicula->delete();
+            session()->flash('success', 'La película se ha eliminado correctamente.');
+        }
+        return redirect()->route('peliculas.index');
+    }
 
 /* 
 *   Para la creacion de las vistas bastara con recoger las vistas creadas en la tiendalaravel y editarlas para adaptarla
