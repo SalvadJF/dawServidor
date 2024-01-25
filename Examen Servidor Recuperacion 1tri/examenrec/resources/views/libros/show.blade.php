@@ -28,22 +28,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($libro->ejemplar as $ejemplar)
+                @foreach ($libro->ejemplares as $ejemplar)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $ejemplar->codigo }}
                         </th>
-                        @if (isset($ejemplar->prestamos->id))
+                        @if ($ejemplar->prestamos->isEmpty())
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
-                                Esta prestado
+                                No esta Prestado
+
                             </th>
-                            <th>{{ $ejemplar->prestamos->fecha_hora }}</th>
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
                         @else
-                            <th>No esta Prestado</th>
-                            <th></th>
+                        <th scope="row"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Esta prestado</th>
+                        <th scope="row"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $ejemplar->prestamos()->first()->created_at }}</th>
                         @endif
                     </tr>
                     @endforeach

@@ -11,7 +11,7 @@ class Libro extends Model
 {
     use HasFactory;
 
-    public function ejemplar(): HasMany
+    public function ejemplares(): HasMany
     {
         return $this->hasMany(Ejemplar::class);
     }

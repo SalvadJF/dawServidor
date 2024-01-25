@@ -14,7 +14,7 @@ class Ejemplar extends Model
 
     use HasFactory;
 
-    public function libros(): BelongsTo
+    public function libro(): BelongsTo
     {
         return $this->belongsTo(Libro::class);
     }
@@ -23,6 +23,5 @@ class Ejemplar extends Model
     {
         return $this->hasMany(Prestamo::class);
     }
-
 
 }
