@@ -6,6 +6,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Contador;
 use App\Models\Articulo;
 use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
@@ -109,5 +110,7 @@ Route::post('/realizar_compra', function () {
 })->middleware('auth')->name('realizar_compra');
 
 Route::resource('facturas', FacturaController::class);
+
+Route::get('/contador', Contador::class);
 
 require __DIR__.'/auth.php';
