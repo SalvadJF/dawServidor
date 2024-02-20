@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
 
-            $table
+            $table->foreignId('user_id');
+            $table->foreignId('vuelo_id');
+            $table->foreign('numero')->references('numero')->on('asientos');
+
+            $table->unique([ 'user_id', 'vuelo_id', 'asiento']);
+
             $table->timestamps();
         });
     }

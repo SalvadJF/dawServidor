@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('vuelos', function (Blueprint $table) {
             $table->id();
             $table->string('codigo', 6)->unique();
-            $table->string('origen', 3);
-            $table->string('destino', 3);
             $table->string('compañia aerea');
             $table->dateTime('salida');
             $table->dateTime('llegada');
             $table->boolean('completado')->default('false');
+
+            $table->foreign('origen')->references('codigo')->on('aeropuertos');
+            $table->foreign('destino')->references('codigo')->on('aeropuertos');
+
             $table->timestamps();
         });
     }
