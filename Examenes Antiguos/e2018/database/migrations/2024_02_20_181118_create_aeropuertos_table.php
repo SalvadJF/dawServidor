@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('aeropuertos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->morphs('codigo', 3);
+            $table->string('codigo')->unique();
             $table->timestamps();
         });
     }
