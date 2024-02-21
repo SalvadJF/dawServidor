@@ -13,7 +13,9 @@ class AeropuertoController extends Controller
      */
     public function index()
     {
-        //
+        return view('aeropuertos.index', [
+            'aeropuertos' => Aeropuerto::all(),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class AeropuertoController extends Controller
      */
     public function create()
     {
-        //
+        return view('aeropuertos.create');
     }
 
     /**
@@ -37,7 +39,9 @@ class AeropuertoController extends Controller
      */
     public function show(Aeropuerto $aeropuerto)
     {
-        //
+        return view('aeropuertos.show', [
+            'aeropuerto' => $aeropuerto,
+        ]);
     }
 
     /**
@@ -45,7 +49,9 @@ class AeropuertoController extends Controller
      */
     public function edit(Aeropuerto $aeropuerto)
     {
-        //
+        return view('aeropuertos.edit', [
+            'aeropuerto' => $aeropuerto,
+        ]);
     }
 
     /**
@@ -61,6 +67,9 @@ class AeropuertoController extends Controller
      */
     public function destroy(Aeropuerto $aeropuerto)
     {
-        //
+        $aeropuerto->delete();
+        session()->flash('success', 'El aeropuerto se ha eliminado correctamente.');
+
+        return redirect()->route('aeropuertos.index');
     }
 }

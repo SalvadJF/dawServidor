@@ -18,8 +18,13 @@ return new class extends Migration
             $table->dateTime('salida');
             $table->dateTime('llegada');
             $table->boolean('completado')->default('false');
-            $table->morphs('origen');
-            $table->morphs('destino');
+            $table->integer('plazas');
+            $table->decimal('precio');
+            $table->string('origen');
+            $table->string('destino');
+
+            $table->foreign('origen')->references('codigo')->on('aeropuertos');
+            $table->foreign('destino')->references('codigo')->on('aeropuertos');
 
             $table->timestamps();
         });

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asientos', function (Blueprint $table) {
+        Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero');
-            $table->decimal('precio');
-            $table->boolean('disponible')->default('true');
-            $table->foreignId('vuelos_id');
+            $table->foreignId('plaza');
+            $table->foreignId('vuelo_id');
+            $table->foreignId('user_id');
 
-            $table->unique(['vuelos_id', 'numero']);
-
+            $table->unique(['user_id', 'vuelo_id']);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asientos');
+        Schema::dropIfExists('reservas');
     }
 };

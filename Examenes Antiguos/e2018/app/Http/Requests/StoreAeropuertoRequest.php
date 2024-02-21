@@ -11,7 +11,7 @@ class StoreAeropuertoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreAeropuertoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|max:255',
+            'codigo' => 'required|alpha|unique:aeropuertos|size:3'
         ];
     }
 }

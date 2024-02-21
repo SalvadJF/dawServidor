@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AeropuertoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VueloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::resource('usuarios', UserController::class);
+Route::resource('aeropuertos', AeropuertoController::class);
+Route::resource('vuelos', VueloController::class);
+Route::resource('reservas', ReservaController::class);
+
 
 require __DIR__.'/auth.php';
