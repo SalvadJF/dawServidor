@@ -13,7 +13,7 @@ class ReservaPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ReservaPolicy
      */
     public function view(User $user, Reserva $reserva): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ReservaPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ReservaPolicy
      */
     public function update(User $user, Reserva $reserva): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ReservaPolicy
      */
     public function delete(User $user, Reserva $reserva): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ReservaPolicy
      */
     public function restore(User $user, Reserva $reserva): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class ReservaPolicy
      */
     public function forceDelete(User $user, Reserva $reserva): bool
     {
-        //
+        return true;
     }
 }

@@ -31,7 +31,13 @@ class AeropuertoController extends Controller
      */
     public function store(StoreAeropuertoRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $aeropuerto = new Aeropuerto();
+        $aeropuerto->nombre = ucfirst(trim(strtolower($validated['nombre'])));
+        $aeropuerto->codigo = $validated['codigo'];
+        $aeropuerto->save();
+        session()->flash('success', 'El aeropuerto se ha creado correctamente.');
+        return redirect()->route('aeropuertos.index');
     }
 
     /**

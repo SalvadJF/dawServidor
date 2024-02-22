@@ -13,7 +13,7 @@ class VueloPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class VueloPolicy
      */
     public function view(User $user, Vuelo $vuelo): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class VueloPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class VueloPolicy
      */
     public function update(User $user, Vuelo $vuelo): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class VueloPolicy
      */
     public function delete(User $user, Vuelo $vuelo): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class VueloPolicy
      */
     public function restore(User $user, Vuelo $vuelo): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class VueloPolicy
      */
     public function forceDelete(User $user, Vuelo $vuelo): bool
     {
-        //
+        return true;
     }
 }

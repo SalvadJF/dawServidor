@@ -17,7 +17,8 @@ class AeropuertoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => fake()->city(),
+            'codigo' => strtoupper(implode($this->faker->randomElements(range('a', 'z'), 3, true))),
         ];
     }
 }

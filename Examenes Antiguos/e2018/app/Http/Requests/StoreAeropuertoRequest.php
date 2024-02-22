@@ -23,7 +23,8 @@ class StoreAeropuertoRequest extends FormRequest
     {
         return [
             'nombre' => 'required|max:255',
-            'codigo' => 'required|alpha|unique:aeropuertos|size:3'
+            'codigo' => 'required|alpha|uppercase|unique:aeropuertos|size:3'
         ];
     }
+
 }
