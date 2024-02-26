@@ -13,7 +13,10 @@ class VueloController extends Controller
      */
     public function index()
     {
-        //
+            // Obtener todos los vuelos disponibles
+            $vuelos = Vuelo::where('plazas_disponibles', '>', 0)->paginate(10);
+
+            return view('vuelos.index', ['vuelos' => $vuelos]);
     }
 
     /**
