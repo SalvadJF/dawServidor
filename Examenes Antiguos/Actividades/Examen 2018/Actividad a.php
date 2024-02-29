@@ -112,9 +112,11 @@ class ReservationController extends Controller
 }
 */
 
-/* Para lograr el objetivo A de impedir que se puedan hacer reservas de un vuelo si no hay plazas libres suficientes, puedes agregar una validación en el controlador de reservas antes de realizar la reserva. Aquí te muestro cómo puedes hacerlo:
+/* Para lograr el objetivo A de impedir que se puedan hacer reservas de un vuelo si no hay plazas libres suficientes, 
+puedes agregar una validación en el controlador de reservas antes de realizar la reserva. Aquí te muestro cómo puedes hacerlo:
 
-En el controlador ReservationController, dentro del método store, puedes verificar si hay suficientes plazas disponibles en el vuelo antes de crear una nueva reserva. Si no hay suficientes plazas disponibles, puedes mostrar un mensaje de error y redireccionar al usuario a la página anterior.
+En el controlador ReservationController, dentro del método store, puedes verificar si hay suficientes plazas disponibles en el vuelo 
+antes de crear una nueva reserva. Si no hay suficientes plazas disponibles, puedes mostrar un mensaje de error y redireccionar al usuario a la página anterior.
 
 */
 

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PosesionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideojuegoController;
+use App\Models\Videojuego;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('videojuegos', VideojuegoController::class);
+Route::get('/videojuegos/{id}/edit', [ VideojuegoController::class, 'edit'  ])->middleware('auth');
+Route::get('/videojuegos/poseo',  [ PosesionController::class, 'index' ])->middleware('auth');
