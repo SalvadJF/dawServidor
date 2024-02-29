@@ -1,0 +1,37 @@
+Desarrollar una aplicacion web PHP usando el framework Laravel 10.
+
+Su finalidad principal sera la de permitir al usuario gestionar la informacion de los videojuegos que posee.
+
+Cada videojuego lo crea una desarrolladora y cada desarrolladora la distribuye una distribuidora.
+
+La base de datos se implantara en PostgreAQL y debera contar, almenos con las siguientes tablas y columnas.
+
+Distribuidoras ( id, nombre )
+
+Desarrolladoras (id, nombre, distribuidora_id)
+
+Videojuegos (id, titulo, anyo, desarrolladora_id)
+
+Poseiones (videojuego_id, user_id)
+
+Se pide.
+
+1 - Crear las migraciones,modelos y relaciones.
+
+2 - Crear el CRUD de videojuegos.
+
+3 - En la ruta GET de videojuegos, solo deben aparecer los videojuegos que tengan el usuario
+logueado, por lo que hay que logearse primero para poder consultar la pagina. 
+Asimismo se debe mostrar una columna con el nombre de la desarrolladora y otra con el de la distribuidora,
+permitiendo ordenar el listado por esas dos columnas.
+
+4 - En la ruta GET videojuegos/{id}/edit, solo se debe permitir el acceso si el usuario logueado
+actualmente poosee el videojuego indicado por su ID, Si no hay ningun usuario logueado , no se debe permitir el acceso.
+
+5 - En la ruta GET videojuegos/{id}/edit, debera aparecer dos listas desplegables, una con las Distribuidoras
+y otra con las Desarrolladoras, Al elegir una distribuidora, se debera filtrar mediante comunicacion asincrona usando Laravel Livewire
+la lista de las desarrolladoras que trabajen con esa distribuidora.
+
+6 - Crear la ruta GET videojuegos/poseo, donde se debe mostrar una lista desplegable con todos los videojuegos y dos botones 
+<<Lo tengo>> <<No lo tengo>>. Dependiendo del boton que pulse el usuario, estara indicando que el usuario logueado posee o no 
+posee ese videojuego en cuestion, actualizando convenientemente la base de datos cuando pulse alguno de los botones de forma asincrona.
