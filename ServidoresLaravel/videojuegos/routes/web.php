@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideojuegoController;
 use App\Livewire\DesarrolladorasLista;
@@ -32,13 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('videojuegos' , VideojuegoController::class)->middleware('auth');
+Route::get('pruebas/guardar', [CommentController::class, 'create']);
+Route::resource('comments', CommentController::class);
 
 Route::get('videojuegos/{id}/edit', [VideojuegoController::class, 'edit'])->middleware('can:edit,videojuego');
 
-Livewire::component('desarrolladoras-lista', DesarrolladorasLista::class);
+Route::resource('videojuegos' , VideojuegoController::class)->middleware('auth');
 
-Livewire::component('videojuegos/poseo', PoseoVideojuego::class);
+
 
 
 
