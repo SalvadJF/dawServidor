@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrdenadorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::resource('ordenadores', OrdenadorController::class)->middleware('auth');
+
+Route::get('/trasladar/{ordenadore}', [OrdenadorController::class, 'trasladar'])
+->name('ordenadores.trasladar')->middleware('auth');
+
+Route::post('/trasladar/{ordenadore}', [OrdenadorController::class, 'cambiar'])
+->name('ordenadores.cambiar')->middleware('auth');
 
 require __DIR__.'/auth.php';
